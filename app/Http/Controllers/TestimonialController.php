@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProjectClient;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class TestimonialController extends Controller
     public function index()
     {
         //
+        $testimonials = Testimonial::orderByDesc('id')->paginate(10);
+        return view('admin.testimonials.index', compact('testimonials'));
     }
 
     /**
@@ -21,6 +24,8 @@ class TestimonialController extends Controller
     public function create()
     {
         //
+        $clients = ProjectClient::orderByDesc('id')->get();
+        return view('admin.testimonials.create', compact('clients'));
     }
 
     /**

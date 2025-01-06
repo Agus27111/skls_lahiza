@@ -13,6 +13,8 @@ class ProjectClientController extends Controller
     public function index()
     {
         //
+        $clients = ProjectClient::orderByDesc('id')->paginate(10);
+        return view('admin.clients.index', compact('clients'));
     }
 
     /**
@@ -21,6 +23,7 @@ class ProjectClientController extends Controller
     public function create()
     {
         //
+        return view('admin.clients.create');
     }
 
     /**
