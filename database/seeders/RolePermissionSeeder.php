@@ -25,7 +25,7 @@ class RolePermissionSeeder extends Seeder
             'manage teams',
             'manage about',
             'manage appointments',
-            'manage hero section',
+            'manage hero sections',
             'manage blogs',
         ];
 
@@ -37,7 +37,7 @@ class RolePermissionSeeder extends Seeder
 
         $user = User::create([
             'name' => 'admin',
-            'email' => 'agussetiawanbelajar@gmail.com',
+            'email' => 'lahiza@sunnah.com',
             'password' => bcrypt('password'),
         ]);
 

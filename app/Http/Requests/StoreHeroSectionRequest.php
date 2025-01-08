@@ -33,7 +33,7 @@ class StoreHeroSectionRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'achievment'=>[
+            'achievement'=>[
                 'required',
                 'string',
                 'max:255',
@@ -48,7 +48,7 @@ class StoreHeroSectionRequest extends FormRequest
                 'image',
                 'mimes:png,jpg,jpeg,webp',
             ],
-            
+
         ];
     }
 }

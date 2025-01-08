@@ -16,7 +16,7 @@
                 @forelse ($heroSections as $heroSection )
                 <div class="item-card flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <img src="{{ $heroSection->banner }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img src="{{ asset('storage/banners/' . $heroSection->banner) }}" alt="Banner Image" class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $heroSection->heading }}</h3>
                         </div>
@@ -26,10 +26,10 @@
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $heroSection->created_at->format('M d, Y') }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href="{{ route('admin.hero_sections.edit'), $heroSection }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        <a href="{{ route('admin.hero_sections.edit', $heroSection) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Edit
                         </a>
-                        <form action=" {{ route('admin.hero_sections.destroy'), $heroSection }}" method="POST">
+                        <form action=" {{ route('admin.hero_sections.destroy', $heroSection) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">

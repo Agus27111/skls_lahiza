@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreHeroSectionRequest;
 use App\Models\HeroSection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class HeroSectionController extends Controller
@@ -29,9 +32,24 @@ class HeroSectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreHeroSectionRequest $request)
     {
         //
+
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+            if($request->hasFile('banner')){
+                $bannerPath = $request->file('banner')->store('banners', 'public');
+                $validated['banner'] = $bannerPath;
+            }
+
+            $newDataRecord = HeroSection::create($validated);
+
+        });
+
+
+        return redirect()->to(route('admin.hero_sections.index'));
+
     }
 
     /**
@@ -64,5 +82,11 @@ class HeroSectionController extends Controller
     public function destroy(HeroSection $heroSection)
     {
         //
+
+        DB::transaction(function () use ($heroSection) {
+            $heroSection->delete();
+        });
+
+        return redirect()->route('admin.hero_sections.index');
     }
 }

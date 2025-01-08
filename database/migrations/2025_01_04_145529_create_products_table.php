@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('tagline');
             $table->string('thumbnail');
             $table->text('about');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
