@@ -33,7 +33,7 @@ class StoreAboutRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'thumbnail'=>[
+            'thubmnail'=>[
                 'required',
                 'image',
                 'mimes:png,jpg,jpeg,webp',

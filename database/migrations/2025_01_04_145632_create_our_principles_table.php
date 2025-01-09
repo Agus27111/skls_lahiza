@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('subtitle');
-            $table->string('thubmnail');
+            $table->string('thumbnail');
             $table->string('icon');
             $table->softDeletes();
             $table->timestamps();

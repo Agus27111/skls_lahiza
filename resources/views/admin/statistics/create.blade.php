@@ -14,7 +14,7 @@
 
                     @endforeach
                 @endif
-                <form method="POST" action=" {{ route('admin.hero_sections.store') }}  " enctype="multipart/form-data">
+                <form method="POST" action=" {{ route('admin.statistics.store') }}  " enctype="multipart/form-data">
                     @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" />

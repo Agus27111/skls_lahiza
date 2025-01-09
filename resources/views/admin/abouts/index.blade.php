@@ -27,7 +27,7 @@
                     </div>
                     <div  class="hidden md:flex flex-col">
                         <p class="text-slate-500 text-sm">Date</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">{{ $about->creted_at->format('M d, Y') }}</h3>
+                        <h3 class="text-indigo-950 text-xl font-bold">{{ $about->created_at->format('M d, Y') }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
                         <a href="{{route('admin.abouts.edit', $about)}}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">

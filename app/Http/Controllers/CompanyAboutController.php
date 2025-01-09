@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAboutRequest;
+use App\Http\Requests\UpdateAboutRequest;
 use App\Models\CompanyAbout;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -67,17 +68,43 @@ class CompanyAboutController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CompanyAbout $companyAbout)
+    public function edit(CompanyAbout $about)
     {
         //
+        return view('admin.abouts.edit', compact('about'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CompanyAbout $companyAbout)
+    public function update(UpdateAboutRequest $request, CompanyAbout $about)
     {
         //
+        DB::transaction(function () use ($request, $about) {
+            $validated = $request->validated();
+
+            // Update thumbnail jika ada file baru
+            if ($request->hasFile('thubmnail')) {
+                $thubmnailPath = $request->file('thubmnail')->store('thubmnails', 'public');
+                $validated['thubmnail'] = $thubmnailPath;
+            }
+
+            // Update data utama
+            $about->update($validated);
+
+            // Update keypoints
+            if (!empty($validated['keypoints']) && is_array($validated['keypoints'])) {
+                // Hapus keypoints lama
+                $about->keypoints()->delete();
+
+                // Tambahkan keypoints baru
+                foreach ($validated['keypoints'] as $keypoint) {
+                    $about->keypoints()->create(['keypoint' => $keypoint]);
+                }
+            }
+        });
+
+        return redirect()->route('admin.abouts.index');
     }
 
     /**

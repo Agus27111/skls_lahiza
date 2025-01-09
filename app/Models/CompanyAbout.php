@@ -12,12 +12,12 @@ class CompanyAbout extends Model
 
     protected $fillable = [
         'name',
-        'thumbnail',
+        'thubmnail',
         'type',
     ];
 
     public function keypoints()
     {
-        return $this->hasMany(CompanyKeyPoint::class, 'company_id');
+        return $this->hasMany(CompanyKeyPoint::class, 'company_about_id');
     }
 }

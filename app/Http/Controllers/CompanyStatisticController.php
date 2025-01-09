@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStatisticRequest;
+use App\Http\Requests\UpdateStatiticRequest;
 use App\Models\CompanyStatistic;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -61,17 +62,30 @@ class CompanyStatisticController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CompanyStatistic $companyStatistic)
+    public function edit(CompanyStatistic $statistic)
     {
         //
+        return view('admin.statistics.edit', compact('statistic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CompanyStatistic $companyStatistic)
+    public function update(UpdateStatiticRequest $request, CompanyStatistic $statistic)
     {
         //
+        $validated = $request->validated();
+        // Jika ada gambar baru, simpan dan perbarui nama file icon
+        if ($request->hasFile('icon')) {
+            $path = $request->file('icon')->store('icons', 'public');
+            $validated['icon'] = $path;
+        }
+
+        // Update data statistik
+        $statistic->update($validated);
+
+        // Redirect ke halaman yang sesuai setelah update
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistic updated successfully');
     }
 
     /**

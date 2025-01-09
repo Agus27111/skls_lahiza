@@ -11,6 +11,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\CompanyAboutController;
 use App\Http\Controllers\ProjectClientController;
 use App\Http\Controllers\CompanyStatisticController;
+use App\Http\Controllers\OurPrincipleController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('products', ProductController::class);
         });
         Route::middleware('can:manage principles')->group(function(){
-            Route::resource('principles', ProductController::class);
+            Route::resource('principles', OurPrincipleController::class);
         });
         Route::middleware('can:manage testimonials')->group(function(){
             Route::resource('testimonials', TestimonialController::class);
