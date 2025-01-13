@@ -33,11 +33,8 @@ class StoreAppointmentRequest extends FormRequest
                 'email',
                 'max:255',
             ],
-            'phone_number'=>[
-                'required',
-                'string',
-                'max:255',
-            ],
+            'phone_number'=>'required|regex:/^62\d{9,13}$/',
+
             'meeting_at'=>[
                 'required',
                 'date',

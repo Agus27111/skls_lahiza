@@ -14,6 +14,12 @@ use App\Http\Controllers\CompanyStatisticController;
 use App\Http\Controllers\OurPrincipleController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+Route::get('/team', [FrontController::class, 'team'])->name('front.team');
+Route::get('/about', [FrontController::class, 'about'])->name('front.about');
+Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
+Route::get('/appointment', [FrontController::class, 'appointment'])->name('front.appointment');
+Route::post('/appointment/store', [FrontController::class, 'appointment_store'])->name('front.appointment_store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

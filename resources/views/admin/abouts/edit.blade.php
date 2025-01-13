@@ -42,9 +42,12 @@
                     <div class="mt-4">
 
                         <div id="keypoints-container" class="flex flex-col gap-y-2">
+                            <x-input-label for='kepoints' :value="_('keypoints')" />
                             @foreach ($about->keypoints as $keypoint)
                                 <input type="text" class="py-3 rounded-lg border-slate-300 border w-full"
                                        name="keypoints[]" value="{{ $keypoint->keypoint }}">
+                                       @empty
+
                             @endforeach
                         </div>
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
