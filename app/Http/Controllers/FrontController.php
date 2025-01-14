@@ -78,4 +78,12 @@ class FrontController extends Controller
 
         return redirect()->route('front.index')->with('whatsappUrl', $whatsappUrl);
     }
+
+    public function ppdb(){
+
+    }
+    public function book(){
+
+    }
+
 }

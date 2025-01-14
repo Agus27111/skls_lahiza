@@ -19,6 +19,8 @@ Route::get('/about', [FrontController::class, 'about'])->name('front.about');
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/appointment', [FrontController::class, 'appointment'])->name('front.appointment');
 Route::post('/appointment/store', [FrontController::class, 'appointment_store'])->name('front.appointment_store');
+Route::get('/ppdb', [FrontController::class, 'ppdb'])->name('front.ppdb');
+Route::get('/book', [FrontController::class, 'book'])->name('front.book');
 
 
 Route::get('/dashboard', function () {
