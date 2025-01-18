@@ -1,17 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClassModelController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\CompanyAboutController;
+use App\Http\Controllers\OurPrincipleController;
 use App\Http\Controllers\ProjectClientController;
 use App\Http\Controllers\CompanyStatisticController;
-use App\Http\Controllers\OurPrincipleController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
@@ -61,6 +67,24 @@ Route::middleware('auth')->group(function () {
         });
         Route::middleware('can:manage hero sections')->group(function(){
             Route::resource('hero_sections', HeroSectionController::class);
+        });
+        Route::middleware('can:manage blogs')->group(function(){
+            Route::resource('blogs', BlogController::class);
+        });
+        Route::middleware('can:manage ppdb')->group(function(){
+            Route::resource('ppdbs', PpdbController::class);
+        });
+        Route::middleware('can:manage classModels')->group(function(){
+            Route::resource('classModels', ClassModelController::class);
+        });
+        Route::middleware('can:manage books')->group(function(){
+            Route::resource('books', BookController::class);
+        });
+        Route::middleware('can:manage categories')->group(function(){
+            Route::resource('categories', CategoryController::class);
+        });
+        Route::middleware('can:manage activities')->group(function(){
+            Route::resource('activities', ActivityController::class);
         });
 
     });

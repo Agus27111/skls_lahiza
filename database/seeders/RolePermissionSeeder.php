@@ -27,6 +27,11 @@ class RolePermissionSeeder extends Seeder
             'manage appointments',
             'manage hero sections',
             'manage blogs',
+            'manage ppdb',
+            'manage classModels',
+            'manage books',
+            'manage categories',
+            'manage activities',
         ];
 
         foreach ($permissions as $permission) {
@@ -43,13 +48,13 @@ class RolePermissionSeeder extends Seeder
 
         $user->assignRole($superAdminRole);
 
-        $kepalaSekolahRole = Role::firstOrCreate(['name' => 'kepala-sekolah']);
+        // $kepalaSekolahRole = Role::firstOrCreate(['name' => 'kepala-sekolah']);
 
-        $kepalaSekolahPermission = [
-            'manage blogs',
-        ];
+        // $kepalaSekolahPermission = [
+        //     'manage blogs',
+        // ];
 
-        $kepalaSekolahRole->syncPermissions($kepalaSekolahPermission);
+        // $kepalaSekolahRole->syncPermissions($kepalaSekolahPermission);
 
     }
 }
