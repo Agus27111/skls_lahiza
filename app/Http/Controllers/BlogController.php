@@ -10,9 +10,10 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      
+
     }
 
     /**
@@ -34,9 +35,11 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Blog $blog)
+    public function show($slug)
     {
         //
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        return view('front.blog', compact('blog'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyAbout;
 use App\Models\Ppdb;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class PpdbController extends Controller
     public function index()
     {
         //
+         //
+         $abouts = CompanyAbout::orderByDesc('id')->paginate(10);
+         return view('admin.ppdb.index', compact('abouts'));
     }
 
     /**

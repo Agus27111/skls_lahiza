@@ -22,11 +22,13 @@ use App\Http\Controllers\CompanyStatisticController;
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/about', [FrontController::class, 'about'])->name('front.about');
-Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/appointment', [FrontController::class, 'appointment'])->name('front.appointment');
 Route::post('/appointment/store', [FrontController::class, 'appointment_store'])->name('front.appointment_store');
 Route::get('/ppdb', [FrontController::class, 'ppdb'])->name('front.ppdb');
 Route::get('/book', [FrontController::class, 'book'])->name('front.book');
+Route::get('/blog', [FrontController::class, 'blogs'])->name('front.blogs');
+Route::get('blog/{slug}', [BlogController::class, 'show'])->name('front.blog');
+
 
 
 Route::get('/dashboard', function () {
@@ -72,7 +74,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('blogs', BlogController::class);
         });
         Route::middleware('can:manage ppdb')->group(function(){
-            Route::resource('ppdbs', PpdbController::class);
+            Route::resource('ppdb', PpdbController::class);
         });
         Route::middleware('can:manage classModels')->group(function(){
             Route::resource('classModels', ClassModelController::class);

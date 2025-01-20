@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAppointmentRequest;
+use App\Models\Blog;
+use App\Models\OurTeam;
+use App\Models\Product;
 use App\Models\Appointment;
+use App\Models\HeroSection;
+use App\Models\Testimonial;
 use App\Models\CompanyAbout;
+use App\Models\OurPrinciple;
 use Illuminate\Http\Request;
 use App\Models\CompanyStatistic;
-use App\Models\OurPrinciple;
-use App\Models\Product;
-use App\Models\OurTeam;
-use App\Models\Testimonial;
-use App\Models\HeroSection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreAppointmentRequest;
 
 class FrontController extends Controller
 {
@@ -25,8 +26,9 @@ class FrontController extends Controller
         $products = Product::take(3)->get();
         $teams = OurTeam::take(7)->get();
         $testimonials = Testimonial::take(5)->get();
+        $blogs=Blog::take(10)->get();
 
-        return view('front.index', compact('statistics', 'principles','products', 'teams', 'testimonials', 'heroSections'));
+        return view('front.index', compact('statistics', 'principles','products', 'teams', 'testimonials', 'heroSections', 'blogs'));
     }
 
     public function team(){
@@ -44,10 +46,7 @@ class FrontController extends Controller
         return view('front.about', compact('products', 'statistics', 'testimonials', 'abouts'));
     }
 
-    public function blog(){
-        $products = Product::take(3)->get(); //misal
-        return view('front.blog', compact('products'));
-    }
+
 
     public function appointment(){
         $testimonials = Testimonial::take(5)->get();
@@ -77,6 +76,22 @@ class FrontController extends Controller
         });
 
         return redirect()->route('front.index')->with('whatsappUrl', $whatsappUrl);
+    }
+
+    public function blog(Request $request){
+          //
+          $query = Blog::query();
+
+          // Untuk filter pencarian, jika ada
+          if ($request->has('search')) {
+              $query->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('content', 'like', '%' . $request->search . '%');
+          }
+
+          // Ambil data blog dengan pagination
+          $blogs = $query->paginate(6); // Gantilah angka 6 dengan jumlah artikel per halaman sesuai kebutuhan
+
+          return view('front.blogs', compact('blogs'));
     }
 
     public function ppdb(){
