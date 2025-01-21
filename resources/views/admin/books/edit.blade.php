@@ -9,54 +9,50 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
 
-                <form method="POST" action="{{ route('admin.abouts.update', $about) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.books.update', $book) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                          required autofocus autocomplete="name" value='{{ $about->name }}' />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input-label for="title" :value="__('Title')" />
+                        <x-text-input id="title" class="block mt-1 w-full" type="text" name="title"
+                          required autofocus autocomplete="title" value='{{ $book->title }}' />
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="thubmnail" :value="__('thubmnail')" />
-                        <img src="{{ Storage::url($about->thubmnail) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="thubmnail" class="block mt-1 w-full" type="file" name="thubmnail" autofocus autocomplete="thubmnail" />
+                        <img src="{{ Storage::url($book->thubmnail) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <x-text-input id="thubmnail" class="block mt-1 w-full" type="file" name="thubmnail" autofocus autocomplete="thubmnail" value='{{ $book->thubmnail }}'/>
                         <x-input-error :messages="$errors->get('thubmnail')" class="mt-2" />
                     </div>
-
                     <div class="mt-4">
-                        <x-input-label for="type" :value="__('type')" />
+                        <x-input-label for="pdf" :value="__('PDF')" />
+                        <x-text-input id="pdf" class="block mt-1 w-full" type="file" name="pdf" autofocus autocomplete="pdf" value='{{ $book->url }}' />
 
-                        <select name="type" id="type" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
-                            <option value="Visions">Visions</option>
-                            <option value="Missions">Missions</option>
-                        </select>
-
-                        <x-input-error :messages="$errors->get('type')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('pdf')" class="mt-2" />
                     </div>
-
-                    <h3 class="text-indigo-950 text-lg font-bold mt-4">Keypoints</h3>
-
                     <div class="mt-4">
-
-                        <div id="keypoints-container" class="flex flex-col gap-y-2">
-                            <x-input-label for='kepoints' :value="_('keypoints')" />
-                            @foreach ($about->keypoints as $keypoint)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border w-full"
-                                       name="keypoints[]" value="{{ $keypoint->keypoint }}">
-                                       @empty
-
+                        <x-input-label for="class_model_id" :value="__('Class')" />
+                        <select name="class_model_id" id="class_model_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
+                            <option value="">Choose class</option>
+                            @foreach ($classes as $class)
+                                <option value="{{ $class->id }}"
+                                    @if(old('class_model_id', $book->class_model_id) == $class->id)
+                                        selected
+                                    @endif>
+                                    {{ $class->name }}
+                                </option>
                             @endforeach
-                        </div>
-                        <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
+                        </select>
+                        <x-input-error :messages="$errors->get('class_model_id')" class="mt-2" />
                     </div>
+
+
 
                     <div class="flex items-center justify-end mt-4">
 
                         <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Update About
+                            Update Book
                         </button>
                     </div>
                 </form>

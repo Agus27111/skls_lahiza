@@ -23,11 +23,11 @@ class UpdateBlogRequest extends FormRequest
     {
         return [
             //
-            'slug'=>[
-                'required',
-                'string',
-                'max:255',
-            ],
+            // 'slug'=>[
+            //     'required',
+            //     'string',
+            //     'max:255',
+            // ],
             'title'=>[
                 'required',
                 'string',

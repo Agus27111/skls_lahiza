@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New About') }}
+            {{ __('New PPDB') }}
         </h2>
     </x-slot>
 
@@ -16,7 +16,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.abouts.store') }} " enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.ppdb.store') }} " enctype="multipart/form-data">
                     @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
@@ -25,38 +25,23 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thubmnail" :value="__('thubmnail')" />
-                        <x-text-input id="thubmnail" class="block mt-1 w-full" type="file" name="thubmnail" required autofocus autocomplete="thubmnail" />
-                        <x-input-error :messages="$errors->get('thubmnail')" class="mt-2" />
+                        <x-input-label for="image1" :value="__('image1')" />
+                        <img src="{{ Storage::url($ppdb->image1) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <x-text-input id="image1" class="block mt-1 w-full" type="file" name="image1" autofocus autocomplete="image1" />
+                        <x-input-error :messages="$errors->get('image1')" class="mt-2" />
                     </div>
-
                     <div class="mt-4">
-                        <x-input-label for="type" :value="__('type')" />
-
-                        <select name="type" id="type" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
-                            <option value="">Choose type</option>
-                            <option value="Visions">Visions</option>
-                            <option value="Missions">Missions</option>
-                        </select>
-
-                        <x-input-error :messages="$errors->get('type')" class="mt-2" />
+                        <x-input-label for="image2" :value="__('image2')" />
+                        <img src="{{ Storage::url($ppdb->image2) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <x-text-input id="image2" class="block mt-1 w-full" type="file" name="image2" autofocus autocomplete="image2" />
+                        <x-input-error :messages="$errors->get('image2')" class="mt-2" />
                     </div>
 
-                    <h3 class="text-indigo-950 text-lg font-bold mt-4">Keypoints</h3>
-
-                    <div class="mt-4">
-                        <div class="flex flex-col gap-y-5">
-                            @for ($i = 0; $i < 3; $i++)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your keypoint" name="keypoints[]">
-                            @endfor
-                        </div>
-                        <x-input-error :messages="$errors->get('keypoints')" class="mt-2" />
-                    </div>
 
                     <div class="flex items-center justify-end mt-4">
 
                         <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Add New About
+                            Add New PPDB
                         </button>
                     </div>
                 </form>

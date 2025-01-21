@@ -11,6 +11,7 @@ class Ppdb extends Model
     //
     use HasFactory, SoftDeletes;
     protected $fillable = [
+        'name',
         'image1',
         'image2'
     ];

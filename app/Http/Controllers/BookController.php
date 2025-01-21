@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use App\Models\ClassModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -13,6 +17,10 @@ class BookController extends Controller
     public function index()
     {
         //
+        $books = Book::orderByDesc('id')->paginate(10);
+
+
+        return view('admin.books.index', compact('books'));
     }
 
     /**
@@ -21,14 +29,39 @@ class BookController extends Controller
     public function create()
     {
         //
+        $classes = ClassModel::orderByDesc('id')->get();
+        return view('admin.books.create', compact('classes'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
         //
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if($request->hasFile('thumbnail')){
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+
+            if ($request->hasFile('pdf')) {
+                $pdfPath = $request->file('pdf')->store('pdfs', 'public'); // Simpan di folder 'pdfs'
+                $validated['url'] = $pdfPath; // Gunakan kolom 'url' untuk menyimpan path PDF
+            }
+
+            if ($request->has('class_model_id')) {
+                $validated['class_model_id'] = $request->class_model_id;
+            }
+
+            $newDataRecord = Book::create($validated);
+
+        });
+
+        return redirect()->route('admin.books.index');
+
     }
 
     /**
@@ -45,14 +78,40 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         //
+        $classes = ClassModel::orderByDesc('id')->get();
+        return view('admin.books.edit', compact('book', 'classes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         //
+        DB::transaction(function () use ($request, $book) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+            if ($request->hasFile('pdf')) {
+                $pdfPath = $request->file('pdf')->store('pdfs', 'public'); // Simpan di folder 'pdfs'
+                $validated['url'] = $pdfPath; // Gunakan kolom 'url' untuk menyimpan path PDF
+            }
+            if ($request->hasFile('pdf')) {
+                $pdfPath = $request->file('pdf')->store('pdfs', 'public'); // Simpan di folder 'pdfs'
+                $validated['url'] = $pdfPath; // Gunakan kolom 'url' untuk menyimpan path PDF
+            }
+
+            if ($request->has('class_model_id')) {
+                $validated['class_model_id'] = $request->class_model_id;
+            }
+
+            $book->update($validated);
+        });
+
+        return redirect()->route('admin.books.index')->with('success', 'Book updated successfully!');
     }
 
     /**
@@ -61,5 +120,10 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+        DB::transaction(function () use ($book) {
+            $book->delete();
+        });
+
+        return redirect()->route('admin.books.index');
     }
 }

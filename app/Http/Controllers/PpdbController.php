@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePpdbRequest;
+use App\Http\Requests\UpdatePpdbRequest;
 use App\Models\CompanyAbout;
 use App\Models\Ppdb;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PpdbController extends Controller
@@ -13,26 +16,41 @@ class PpdbController extends Controller
      */
     public function index()
     {
-        //
-         //
-         $abouts = CompanyAbout::orderByDesc('id')->paginate(10);
-         return view('admin.ppdb.index', compact('abouts'));
+       
+         $ppdbs = Ppdb::orderByDesc('id')->paginate(2);
+         return view('admin.ppdb.index', compact('ppdbs'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Ppdb $ppdb)
     {
         //
+        return view('admin.ppdb.create', compact('ppdb'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePpdbRequest $request)
     {
         //
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+            if($request->hasFile('image1')){
+                $thumbnailPath = $request->file('image1')->store('image1s', 'public');
+                $validated['image1'] = $thumbnailPath;
+            }
+            if($request->hasFile('image2')){
+                $thumbnailPath = $request->file('image2')->store('image2s', 'public');
+                $validated['image2'] = $thumbnailPath;
+            }
+
+            $newDataRecord = Ppdb::create($validated);
+        });
+
+        return redirect()->route('admin.ppdb.index');
     }
 
     /**
@@ -49,14 +67,31 @@ class PpdbController extends Controller
     public function edit(Ppdb $ppdb)
     {
         //
+        return view('admin.ppdb.edit', compact('ppdb'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ppdb $ppdb)
+    public function update(UpdatePpdbRequest $request, Ppdb $ppdb)
     {
         //
+        DB::transaction(function () use ($request, $ppdb) {
+            $validated = $request->validated();
+
+            if($request->hasFile('image1')){
+                $thumbnailPath = $request->file('image1')->store('image1s', 'public');
+                $validated['image1'] = $thumbnailPath;
+            }
+            if($request->hasFile('image2')){
+                $thumbnailPath = $request->file('image2')->store('image2s', 'public');
+                $validated['image2'] = $thumbnailPath;
+            }
+
+            $ppdb->update($validated);
+        });
+
+        return redirect()->route('admin.ppdb.index')->with('success', 'Ppdb updated successfully!');
     }
 
     /**
@@ -65,5 +100,9 @@ class PpdbController extends Controller
     public function destroy(Ppdb $ppdb)
     {
         //
+        DB::transaction(function () use ($ppdb) {
+            $ppdb->delete();
+        });
+        return redirect()->route('admin.ppdb.index');
     }
 }

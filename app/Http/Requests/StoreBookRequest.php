@@ -28,11 +28,13 @@ class StoreBookRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'url'=>[
+            'pdf' => 'required|mimes:pdf|max:10240',
+            'thubmnail'=>[
                 'required',
-                'string',
-                'max:255',
-            ]
+                'image',
+                'mimes:png,jpg,jpeg,webp',
+            ],
+              'class_model_id' => 'required|exists:class_models,id'
         ];
     }
 }

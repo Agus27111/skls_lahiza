@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('class_model_id')->constrained()->onDelete('cascade');
             $table->string('url');
+            $table->string('thubmnail')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,7 +12,9 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-      
+        $blogs = Blog::orderByDesc('id')->paginate(10);
+        return view('admin.blogs.index', compact('blogs'));
+
 
     }
 
@@ -22,6 +24,7 @@ class BlogController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**

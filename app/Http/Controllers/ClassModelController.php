@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClassModelRequest;
 use App\Models\ClassModel;
 use Illuminate\Http\Request;
 
@@ -26,10 +27,19 @@ class ClassModelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(StoreClassModelRequest $request)
+{
+
+    $class = ClassModel::create([
+        'name' => $request->name,
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'class' => $class,
+    ]);
+}
+
 
     /**
      * Display the specified resource.

@@ -13,6 +13,8 @@ class Book extends Model
     protected $fillable = [
         'title',
         'url',
+        'thubmnail',
+        'class_model_id',
     ];
 
     public function classModel() {

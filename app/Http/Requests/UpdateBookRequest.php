@@ -28,11 +28,13 @@ class UpdateBookRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'url'=>[
-                'required',
-                'string',
-                'max:255',
-            ]
+            'pdf' => 'sometimes|mimes:pdf|max:10240',
+            'thubmnail'=>[
+                'sometimes',
+                'image',
+                'mimes:png,jpg,jpeg,webp',
+            ],
+              'class_model_id' => 'sometimes|exists:class_models,id'
         ];
     }
 }

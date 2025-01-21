@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ppdbs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('image1');
             $table->string('image2');
             $table->softDeletes();

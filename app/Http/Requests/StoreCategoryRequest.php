@@ -28,17 +28,17 @@ class StoreCategoryRequest extends FormRequest
                         'string',
                         'max:255',
                     ],
-                    'slug'=>[
-                        'required',
-                        'string',
-                        'max:255',
-                    ],
+                    // 'slug'=>[
+                    //     'required',
+                    //     'string',
+                    //     'max:255',
+                    // ],
                     'color'=>[
                         'required',
                         'string',
                         'max:255',
                     ]
                 ];
-        
+
     }
 }
