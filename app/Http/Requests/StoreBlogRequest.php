@@ -41,13 +41,14 @@ class StoreBlogRequest extends FormRequest
             'content'=>[
                 'required',
                 'string',
-                'max:2000',
+                'max:65535',
             ],
             'image'=>[
                 'required',
                 'image',
                 'mimes:png,jpg,jpeg,webp',
             ],
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

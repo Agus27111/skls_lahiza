@@ -27,17 +27,14 @@ class UpdateCategoryRequest extends FormRequest
                         'required',
                         'string',
                         'max:255',
+                        'unique:categories,name'
                     ],
                     // 'slug'=>[
                     //     'required',
                     //     'string',
                     //     'max:255',
                     // ],
-                    'color'=>[
-                        'required',
-                        'string',
-                        'max:255',
-                    ]
+                    'color'=>['sometimes', 'regex:/^#[0-9A-Fa-f]{6}$/']
                 ];
 
     }

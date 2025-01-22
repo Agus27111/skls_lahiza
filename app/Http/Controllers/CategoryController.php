@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
+use Illuminate\Support\Facades\Log;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -29,19 +32,26 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
-        $category = Category::create([
-            'name' => $request->name,
-            'color' => $request->color,
+        try {
+            $category = Category::create([
+                'name' => $request->name,
+                'color' => $request->color,
+                'slug' => Str::slug($request->name),
+            ]);
 
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'category' => $category,
-        ]);
-
+            return response()->json([
+                'success' => true,
+                'category' => $category,
+            ]);
+        } catch (\Exception $e) {
+            // Log::error('Category store error: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -62,7 +72,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
     }

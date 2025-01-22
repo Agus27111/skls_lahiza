@@ -17,13 +17,14 @@ class Category extends Model
         'color',
     ];
 
+
     /**
      * Set the slug based on the name
      */
     public function setSlugAttribute($value)
     {
         // Menggunakan Str::slug untuk membuat slug dengan format huruf kecil dan spasi diganti dengan '-'
-        $this->attributes['slug'] = Str::slug($this->name, '-');
+        $this->attributes['slug'] = $value ?: Str::slug($this->attributes['name']);
     }
 
     public function blog(){

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -13,8 +17,8 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $blogs = Blog::orderByDesc('id')->paginate(10);
-        return view('admin.blogs.index', compact('blogs'));
-
+        $categories =Category::orderByDesc('id')->get();
+        return view('admin.blogs.index', compact('blogs', 'categories'));
 
     }
 
@@ -24,15 +28,34 @@ class BlogController extends Controller
     public function create()
     {
         //
-        
+        $categories = Category::orderByDesc('id')->get();
+        return view('admin.blogs.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBlogRequest $request)
     {
         //
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if($request->hasFile('image')){
+                $imagePath = $request->file('image')->store('images', 'public');
+                $validated['image'] = $imagePath;
+            }
+
+            if ($request->has('category_id')) {
+                $validated['category_id'] = $request->category_id;
+            }
+
+            $newDataRecord = Blog::create($validated);
+
+        });
+
+        return redirect()->route('admin.blogs.index');
+
     }
 
     /**
@@ -51,14 +74,33 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         //
+        $categories =Category::orderByDesc('id')->get();
+        return view('admin.blogs.edit', compact('categories',  'blog'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, Blog $blog)
     {
         //
+        DB::transaction(function () use ($request, $blog) {
+            $validated = $request->validated();
+
+            if($request->hasFile('image')){
+                $imagePath = $request->file('image')->store('images', 'public');
+                $validated['image'] = $imagePath;
+            }
+
+            if ($request->has('category_id')) {
+                $validated['category_id'] = $request->category_id;
+            }
+
+            $blog->update($validated);
+
+        });
+
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully!');
     }
 
     /**
@@ -67,5 +109,10 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+        DB::transaction(function () use ($blog) {
+            $blog->delete();
+        });
+
+        return redirect()->route('admin.blogs.index');
     }
 }

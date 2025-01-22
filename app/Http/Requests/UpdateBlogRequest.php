@@ -29,25 +29,26 @@ class UpdateBlogRequest extends FormRequest
             //     'max:255',
             // ],
             'title'=>[
-                'required',
+                'sometimes',
                 'string',
                 'max:255',
             ],
             'author'=>[
-                'required',
+                'sometimes',
                 'string',
                 'max:255',
             ],
             'content'=>[
-                'required',
+                'sometimes',
                 'string',
-                'max:2000',
+                'max:65535',
             ],
             'image'=>[
                 'sometimes',
                 'image',
                 'mimes:png,jpg,jpeg,webp',
             ],
+            'category_id' => 'sometimes|exists:categories,id',
         ];
     }
 }

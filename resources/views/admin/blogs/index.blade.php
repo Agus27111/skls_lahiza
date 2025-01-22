@@ -16,14 +16,17 @@
                 @forelse ($blogs as  $blog)
                 <div class="item-card flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <img src="{{ $blog->thubmnail }} " alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img src="{{ $blog->image }} " alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $blog->name }}</h3>
+                            <p class="text-slate-500 text-sm">Judul</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $blog->title }}</h3>
                         </div>
                     </div>
                     <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Type</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">{{ $blog->type }}</h3>
+                        <p class="text-slate-500 text-sm">Kategori</p>
+
+                        <h3 class="text-indigo-950 text-xl font-bold">{{ $blog->category ? $blog->category->name : 'No Category' }}</h3>
+
                     </div>
                     <div  class="hidden md:flex flex-col">
                         <p class="text-slate-500 text-sm">Date</p>

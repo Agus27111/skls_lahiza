@@ -17,6 +17,8 @@ class Blog extends Model
         'author',
         'content',
         'image',
+        'category_id',
+        'slug',
     ];
 
     // Mutator untuk slug
