@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - .:/var/www
+        ports:
+            - "8000:8000"
+        environment:
+            APP_ENV: local
+            APP_DEBUG: true
+            APP_KEY: base64:your-app-key
+
+    npm:
+        image: node:18
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+        command: ["npm", "run", "dev"]
+        ports:
+            - "3000:3000"
