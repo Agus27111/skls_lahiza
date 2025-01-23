@@ -16,8 +16,14 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $blogs = Blog::orderByDesc('id')->paginate(10);
-        $categories =Category::orderByDesc('id')->get();
+        $query = Blog::orderByDesc('id');
+
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $blogs = $query->paginate(10);
+        $categories = Category::orderByDesc('id')->get();
         return view('admin.blogs.index', compact('blogs', 'categories'));
 
     }
@@ -65,7 +71,7 @@ class BlogController extends Controller
     {
         //
         $blog = Blog::where('slug', $slug)->firstOrFail();
-        return view('front.blog', compact('blog'));
+        return view('front.blogs.show', compact('blog'));
     }
 
     /**

@@ -31,6 +31,8 @@ Route::get('blog/{slug}', [BlogController::class, 'show'])->name('front.blog');
 
 
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -78,21 +78,23 @@ class FrontController extends Controller
         return redirect()->route('front.index')->with('whatsappUrl', $whatsappUrl);
     }
 
-    public function blog(Request $request){
-          //
-          $query = Blog::query();
+    public function blogs(Request $request)
+    {
+        $query = Blog::query();
 
-          // Untuk filter pencarian, jika ada
-          if ($request->has('search')) {
-              $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('content', 'like', '%' . $request->search . '%');
-          }
+        // Filter pencarian jika ada
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                  ->orWhere('content', 'like', '%' . $request->search . '%');
+        }
 
-          // Ambil data blog dengan pagination
-          $blogs = $query->paginate(6); // Gantilah angka 6 dengan jumlah artikel per halaman sesuai kebutuhan
+        // Ambil data blog dengan pagination
+        $blogs = $query->paginate(6);
 
-          return view('front.blogs', compact('blogs'));
+        // Pastikan variabel ini dikirim ke view
+        return view('front.blogs.index', compact('blogs'));
     }
+
 
     public function ppdb(){
 

@@ -28,16 +28,8 @@ class UpdatePpdbRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'image1'=>[
-                'sometimes',
-                'image',
-                'mimes:png,jpg,jpeg,webp',
-            ],
-            'image2'=>[
-                'sometimes',
-                'image',
-                'mimes:png,jpg,jpeg,webp',
-            ],
+            'image1'=>'sometimes|image|mimes:png,jpg,jpeg,webp|max:20480',
+            'image2'=>'sometimes|image|mimes:png,jpg,jpeg,webp|max:20480',
         ];
     }
 }

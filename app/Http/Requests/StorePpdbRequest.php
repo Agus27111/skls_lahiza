@@ -28,16 +28,8 @@ class StorePpdbRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'image1'=>[
-                'required',
-                'image',
-                'mimes:png,jpg,jpeg,webp',
-            ],
-            'image2'=>[
-                'required',
-                'image',
-                'mimes:png,jpg,jpeg,webp',
-            ],
+            'image1'=>'required|image|mimes:png,jpg,jpeg,webp|max:20480',
+            'image2'=>'required|image|mimes:png,jpg,jpeg,webp|max:20480',
         ];
     }
 }
