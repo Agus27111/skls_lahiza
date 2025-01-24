@@ -22,37 +22,61 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'name'=>[
+            'name' => [
                 'required',
                 'string',
                 'max:255',
             ],
-            'email'=>[
+            'phone_number' => [
                 'required',
-                'email',
-                'max:255',
+                'regex:/^62\d{9,13}$/',
             ],
-            'phone_number'=>'required|regex:/^62\d{9,13}$/',
-
-            'meeting_at'=>[
+            'gender' => [
+                'required',
+                'in:laki-laki,perempuan', // Hanya menerima nilai "laki-laki" atau "perempuan"
+            ],
+            'date_of_birth' => [
                 'required',
                 'date',
+                'before:today', // Harus tanggal sebelum hari ini
             ],
-            'product_id'=>[
+            'birth_place' => [
                 'required',
-                'integer',
+                'string',
+                'max:255',
             ],
-            'budget'=>[
-                'required',
-                'integer',
-            ],
-            'brief'=>[
+            'address' => [
                 'required',
                 'string',
                 'max:65535',
             ],
+            'father' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'mother' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+            ],
+            'message' => [
+                'nullable',
+                'string',
+                'max:65535',
+            ],
+            'product_id' => [
+                'required',
+                'integer',
+                'exists:products,id', // Memastikan bahwa `product_id` ada di tabel `products`
+            ],
         ];
+
 
     }
 }

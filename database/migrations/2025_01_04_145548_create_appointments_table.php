@@ -16,10 +16,14 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('phone_number');
-            $table->text('brief');
-            $table->unsignedBigInteger('budget');
+            $table->string('gender');
+            $table->string('birth_place');
+            $table->date('date_of_birth');
+            $table->string('address');
+            $table->string('father');
+            $table->string('mother');
             $table->string('email');
-            $table->date('meeting_at');
+            $table->string('message');
             $table->softDeletes();
             $table->timestamps();
         });

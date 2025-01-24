@@ -8,172 +8,157 @@
       </div>
     </div>
     <div id="Contact" class="container max-w-[1130px] mx-auto flex flex-wrap xl:flex-nowrap justify-between gap-[50px] relative z-10">
-      <div class="flex flex-col mt-20 gap-[50px]">
-        <div class="breadcrumb flex items-center gap-[30px]">
-          <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
-          <span class="text-cp-light-grey">/</span>
-          <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Product</p>
-          <span class="text-cp-light-grey">/</span>
-          <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Appointment</p>
-        </div>
-        <h1 class="font-extrabold text-4xl leading-[45px]">We Help You to Build Awesome Project</h1>
-        <div class="flex flex-col gap-5">
-          <div class="flex items-center gap-[10px]">
-            <div class="w-6 h-6 flex shrink-0">
-              <img src="assets/icons/global.svg" alt="icon">
-            </div>
-            <p class="text-cp-dark-blue font-semibold">No 96, Anggapati Jakarta</p>
+        <div class="flex flex-col mt-20 gap-[50px]">
+          <div class="breadcrumb flex items-center gap-[30px]">
+            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
+            <span class="text-cp-light-grey">/</span>
+            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Product</p>
+            <span class="text-cp-light-grey">/</span>
+            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Appointment</p>
           </div>
-          <div class="flex items-center gap-[10px]">
-            <div class="w-6 h-6 flex shrink-0">
-              <img src="assets/icons/call.svg" alt="icon">
-            </div>
-            <p class="text-cp-dark-blue font-semibold">(021) 22081996</p>
-          </div>
-          <div class="flex items-center gap-[10px]">
-            <div class="w-6 h-6 flex shrink-0">
-              <img src="assets/icons/monitor-mobbile.svg" alt="icon">
-            </div>
-            <p class="text-cp-dark-blue font-semibold">shaynacomp.com</p>
-          </div>
-        </div>
-      </div>
-      <form action="{{ route('front.appointment_store') }}" class="flex flex-col p-[30px] rounded-[20px] gap-[18px] bg-white shadow-[0_10px_30px_0_#D1D4DF40] w-full md:w-[700px] shrink-0" method="POST">
-        @csrf
-        @method('POST')
-        <div class="flex items-center gap-[18px]">
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Complete Name</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/profile.svg" alt="icon">
+          <h1 class="font-extrabold text-4xl leading-[45px]">We Help You to Build Awesome Project</h1>
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center gap-[10px]">
+              <div class="w-6 h-6 flex shrink-0">
+                <img src="assets/icons/global.svg" alt="icon">
               </div>
-              <input type="text" name="name" id="" class="appearance-none outline-none bg-white placeholder:font-normal placeholder:text-cp-black font-semibold w-full" placeholder="Write your complete name" required>
+              <p class="text-cp-dark-blue font-semibold">No 96, Anggapati Jakarta</p>
             </div>
-          </div>
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Email Address</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/sms.svg" alt="icon">
+            <div class="flex items-center gap-[10px]">
+              <div class="w-6 h-6 flex shrink-0">
+                <img src="assets/icons/call.svg" alt="icon">
               </div>
-              <input type="email" name="email" id="" class="appearance-none outline-none bg-white placeholder:font-normal placeholder:text-cp-black font-semibold w-full" placeholder="Write your email address" required>
+              <p class="text-cp-dark-blue font-semibold">(021) 22081996</p>
+            </div>
+            <div class="flex items-center gap-[10px]">
+              <div class="w-6 h-6 flex shrink-0">
+                <img src="assets/icons/monitor-mobbile.svg" alt="icon">
+              </div>
+              <p class="text-cp-dark-blue font-semibold">shaynacomp.com</p>
             </div>
           </div>
         </div>
-        <div class="flex items-center gap-[18px]">
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Phone Number</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/call-black.svg" alt="icon">
-              </div>
-              <input type="tel" name="phone_number" id="" class="appearance-none outline-none bg-white placeholder:font-normal placeholder:text-cp-black font-semibold w-full" placeholder="628.........." required>
+        <form action="{{ route('front.appointment_store') }}" class="flex flex-col p-[30px] rounded-[20px] gap-[18px] bg-white shadow-[0_10px_30px_0_#D1D4DF40] w-full md:w-[700px] shrink-0" method="POST">
+            @csrf
+            @method('POST')
+
+            <!-- Nama Lengkap -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Nama Lengkap</p>
+              <input type="text" name="name" placeholder="Masukkan nama lengkap calon siswa" class="p-3 border rounded-lg {{ $errors->has('name') ? 'border-red-500' : '' }}" value="{{ old('name') }}" required>
+              @if ($errors->has('name'))
+                <span class="text-red-500 text-sm">{{ $errors->first('name') }}</span>
+              @endif
             </div>
-            @if ($errors->has('phone_number'))
-            <div style="color: red;" class="text-sm mt-1">
-                {{ $errors->first('phone_number') }}
+
+            <!-- Nomor Telepon -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Nomor Telepon</p>
+              <input type="tel" name="phone_number" placeholder="62xxxxxxxxxxx" class="p-3 border rounded-lg {{ $errors->has('phone_number') ? 'border-red-500' : '' }}" value="{{ old('phone_number') }}" required pattern="^62\d{9,13}$">
+              @if ($errors->has('phone_number'))
+                <span class="text-red-500 text-sm">{{ $errors->first('phone_number') }}</span>
+              @endif
             </div>
-        @endif
-          </div>
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Meeting Date</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white relative">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/calendar.svg" alt="icon">
-              </div>
-              <button type="button" id="dateButton" class="p-0 bg-transparent w-full text-left border-none outline-none">Choose the date</button>
-              <input type="date" name="meeting_at" id="dateInput" class="absolute opacity-0 -z-10">
+
+            <!-- Jenis Kelamin -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Jenis Kelamin</p>
+              <select name="gender" class="p-3 border rounded-lg {{ $errors->has('gender') ? 'border-red-500' : '' }}" required>
+                <option value="" hidden>Pilih jenis kelamin</option>
+                <option value="laki-laki" {{ old('gender') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                <option value="perempuan" {{ old('gender') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+              </select>
+              @if ($errors->has('gender'))
+                <span class="text-red-500 text-sm">{{ $errors->first('gender') }}</span>
+              @endif
             </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-[18px]">
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Your Interest</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/building-4-black.svg" alt="icon">
-              </div>
-              <select name="product_id" id="" class="appearance-none outline-none w-full invalid:font-normal font-semibold px-[10px] -mx-[10px]" required>
-                <option value="" hidden>Choose a project</option>
-                @foreach ($products as $product )
-                <option value="{{ $product->id }}">{{ $product->name }}</option>
+
+            <!-- Tanggal Lahir -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Tanggal Lahir</p>
+              <input type="date" name="date_of_birth" class="p-3 border rounded-lg {{ $errors->has('date_of_birth') ? 'border-red-500' : '' }}" value="{{ old('date_of_birth') }}" required>
+              @if ($errors->has('date_of_birth'))
+                <span class="text-red-500 text-sm">{{ $errors->first('date_of_birth') }}</span>
+              @endif
+            </div>
+
+            <!-- Tempat Lahir -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Tempat Lahir</p>
+              <input type="text" name="birth_place" placeholder="Masukkan tempat lahir Anda" class="p-3 border rounded-lg {{ $errors->has('birth_place') ? 'border-red-500' : '' }}" value="{{ old('birth_place') }}" required>
+              @if ($errors->has('birth_place'))
+                <span class="text-red-500 text-sm">{{ $errors->first('birth_place') }}</span>
+              @endif
+            </div>
+
+            <!-- Alamat -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Alamat</p>
+              <textarea name="address" placeholder="Masukkan alamat lengkap Anda" rows="4" class="p-3 border rounded-lg {{ $errors->has('address') ? 'border-red-500' : '' }}" required>{{ old('address') }}</textarea>
+              @if ($errors->has('address'))
+                <span class="text-red-500 text-sm">{{ $errors->first('address') }}</span>
+              @endif
+            </div>
+
+            <!-- Nama Ayah -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Nama Ayah</p>
+              <input type="text" name="father" placeholder="Masukkan nama ayah Anda" class="p-3 border rounded-lg {{ $errors->has('father') ? 'border-red-500' : '' }}" value="{{ old('father') }}" required>
+              @if ($errors->has('father'))
+                <span class="text-red-500 text-sm">{{ $errors->first('father') }}</span>
+              @endif
+            </div>
+
+            <!-- Nama Ibu -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Nama Ibu</p>
+              <input type="text" name="mother" placeholder="Masukkan nama ibu Anda" class="p-3 border rounded-lg {{ $errors->has('mother') ? 'border-red-500' : '' }}" value="{{ old('mother') }}" required>
+              @if ($errors->has('mother'))
+                <span class="text-red-500 text-sm">{{ $errors->first('mother') }}</span>
+              @endif
+            </div>
+
+            <!-- Email -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Email</p>
+              <input type="email" name="email" placeholder="Masukkan email Anda" class="p-3 border rounded-lg {{ $errors->has('email') ? 'border-red-500' : '' }}" value="{{ old('email') }}" required>
+              @if ($errors->has('email'))
+                <span class="text-red-500 text-sm">{{ $errors->first('email') }}</span>
+              @endif
+            </div>
+
+            <!-- Pesan -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Pesan</p>
+              <textarea name="message" placeholder="Tambahkan pesan (opsional)" rows="4" class="p-3 border rounded-lg {{ $errors->has('message') ? 'border-red-500' : '' }}">{{ old('message') }}</textarea>
+              @if ($errors->has('message'))
+                <span class="text-red-500 text-sm">{{ $errors->first('message') }}</span>
+              @endif
+            </div>
+
+            <!-- Produk -->
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Pilih Produk</p>
+              <select name="product_id" class="p-3 border rounded-lg {{ $errors->has('product_id') ? 'border-red-500' : '' }}" required>
+                <option value="" hidden>Pilih produk</option>
+                @foreach ($products as $product)
+                  <option value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }}>
+                    {{ $product->name }}
+                  </option>
                 @endforeach
               </select>
+              @if ($errors->has('product_id'))
+                <span class="text-red-500 text-sm">{{ $errors->first('product_id') }}</span>
+              @endif
             </div>
-          </div>
-          <div class="flex flex-col gap-2 flex w-full">
-            <p class="font-semibold">Budget Available</p>
-            <div class="flex items-center gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-              <div class="w-[18px] h-[18px] flex shrink-0">
-                <img src="assets/icons/dollar-square.svg" alt="icon">
-              </div>
-              <input type="number" name="budget" id="" class="appearance-none outline-none bg-white placeholder:font-normal placeholder:text-cp-black font-semibold w-full" placeholder="What is your budget" required>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 flex w-full">
-          <p class="font-semibold">Project Brief</p>
-          <div class="flex gap-[10px] p-[14px_20px] border border-[#E8EAF2] focus-within:border-cp-dark-blue transition-all duration-300 rounded-xl bg-white">
-            <div class="w-[18px] h-[18px] flex shrink-0 mt-[3px]">
-              <img src="assets/icons/message-text.svg" alt="icon">
-            </div>
-            <textarea name="brief" id="" rows="6" class="appearance-none outline-none bg-white placeholder:font-normal placeholder:text-cp-black font-semibold w-full resize-none" placeholder="Tell us the project brief"></textarea>
-          </div>
-        </div>
-        <button type="submit" class="bg-cp-dark-blue p-5 w-full rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Book Appointment</button>
-      </form>
-    </div>
-    <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20 relative z-10">
-      <h2 class="font-bold text-lg">Trusted by 500+ Top Leaders Worldwide</h2>
-      <div class="logo-container flex flex-wrap gap-5 justify-center">
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-54.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-52.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-55.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-44.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-51.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-55.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-52.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-54.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-51.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
+
+            <!-- Tombol Submit -->
+            <button type="submit" class="bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition">
+              Kirim Data
+            </button>
+          </form>
       </div>
-    </div>
+
     <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
         <div class="flex flex-col gap-[14px] items-center">
           <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">SUCCESS CLIENTS</p>
@@ -295,7 +280,7 @@
         </div>
       </div>
       <div class="absolute -bottom-[135px] w-full">
-        <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">SHAYNA</p>
+        <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">LAHIZA</p>
       </div>
     </footer>
 

@@ -11,17 +11,22 @@ class Appointment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'phone_number',
         'name',
+        'phone_number',
+        'gender',
+        'date_of_birth',
+        'birth_place',
+        'address',
+        'father',
+        'mother',
         'email',
-        'meeting_at',
-        'budget',
-        'brief',
+        'message',
         'product_id',
+
     ];
 
     protected $casts = [
-        'meeting_at' => 'date',
+        'date_of_birth' => 'date',
     ];
 
     public function product()
