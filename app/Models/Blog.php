@@ -12,7 +12,6 @@ class Blog extends Model
     //
     use HasFactory, SoftDeletes;
     protected $fillable =[
-        'slug',
         'title',
         'author',
         'content',
@@ -23,14 +22,10 @@ class Blog extends Model
 
     // Mutator untuk slug
     public function setSlugAttribute($value)
-    {
-        // Jika slug tidak diberikan, otomatis buat slug dari title
-        if (empty($value)) {
-            $this->attributes['slug'] = Str::slug($this->title);
-        } else {
-            $this->attributes['slug'] = $value;
-        }
-    }
+{
+    $this->attributes['slug'] = $value ?: ($this->title ? Str::slug($this->title) : null);
+}
+
 
     public function category()
     {

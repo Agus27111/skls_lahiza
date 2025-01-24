@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class BlogController extends Controller
 {
@@ -70,7 +71,10 @@ class BlogController extends Controller
     public function show($slug)
     {
         //
-        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $blog = Blog::where('slug', $slug)->first();
+        if (!$blog) {
+            abort(404); // Atau bisa redirect jika blog tidak ditemukan
+        }
         return view('front.blogs.show', compact('blog'));
     }
 

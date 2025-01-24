@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\OurTeam;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Appointment;
 use App\Models\HeroSection;
 use App\Models\Testimonial;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Models\CompanyStatistic;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
 use App\Http\Requests\StoreAppointmentRequest;
 
 class FrontController extends Controller
@@ -80,20 +82,60 @@ class FrontController extends Controller
 
     public function blogs(Request $request)
     {
-        $query = Blog::query();
+        $search = $request->input('search');
+        $category = $request->input('category');
+        $author = $request->input('author');
 
-        // Filter pencarian jika ada
-        if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%')
-                  ->orWhere('content', 'like', '%' . $request->search . '%');
-        }
+        $blogs = Blog::select('id', 'title', 'slug', 'content', 'category_id', 'author', 'created_at')
+            ->with('category')
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                      ->orWhere('content', 'like', '%' . $search . '%');
+            })
+            ->when($category, function ($query, $category) {
+                $query->whereHas('category', function($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->when($author, function ($query, $author) {
+                $query->where('author', 'like', '%' . $author . '%');
+            })
+            ->latest() // Urutkan berdasarkan terbaru
+            ->paginate(6);
 
-        // Ambil data blog dengan pagination
-        $blogs = $query->paginate(6);
-
-        // Pastikan variabel ini dikirim ke view
-        return view('front.blogs.index', compact('blogs'));
+        return view('front.blogs.index', [
+            'title' => 'Blog',
+            'blogs' => $blogs,
+            'search' => $search,
+        ]);
     }
+
+    public function blogsByCategory($category, Request $request)
+    {
+        // Cari kategori berdasarkan slug
+        $category = Category::where('slug', $category)->firstOrFail();
+
+        // Ambil parameter pencarian jika ada
+        $search = $request->input('search');
+
+        // Query blog berdasarkan kategori dan pencarian (jika ada)
+        $blogs = Blog::where('category_id', $category->id)
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                      ->orWhere('content', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate(6);
+
+        return view('front.blogs.index', [
+            'title' => 'Blogs in ' . $category->name,
+            'blogs' => $blogs,
+            'category' => $category,
+            'search' => $search,
+        ]);
+    }
+
+
 
 
     public function ppdb(){
