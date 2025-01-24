@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class StoreBlogRequest extends FormRequest
 {
@@ -22,12 +24,12 @@ class StoreBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            // 'slug'=>[
-            //     'required',
-            //     'string',
-            //     'max:255',
-            // ],
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('blogs'), // Validasi agar slug unik
+            ],
             'title'=>[
                 'required',
                 'string',

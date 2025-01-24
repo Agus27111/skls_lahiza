@@ -9,6 +9,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class BlogController extends Controller
 {
@@ -52,6 +54,11 @@ class BlogController extends Controller
                 $imagePath = $request->file('image')->store('images', 'public');
                 $validated['image'] = $imagePath;
             }
+
+            // Memastikan slug di-set dengan benar
+        if (empty($validated['slug'])) {
+            $validated['slug'] = Str::slug($validated['title']);
+        }
 
             if ($request->has('category_id')) {
                 $validated['category_id'] = $request->category_id;

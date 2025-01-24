@@ -76,7 +76,8 @@
                 <a href="https://wa.me/{{ preg_replace('/\D/', '', $appointment->phone_number) }}?text={{ urlencode('Halo ' . $appointment->name . ', kami ingin mendiskusikan lebih lanjut mengenai produk ' . $appointment->product->name . '.') }}" class="text-center font-bold py-4 px-6 bg-indigo-700 text-white rounded-full"  target="_blank">
                     Follow Up Customer
                 </a>
-
+                @empty
+                    <p>No appointments available.</p>
                 @endforelse
             </div>
         </div>

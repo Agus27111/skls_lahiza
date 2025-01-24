@@ -35,8 +35,11 @@
                     </address>
                     <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $blog->title }}</h1>
                 </header>
+                <div class="mt-4">
+                    <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}" class="rounded-lg object-cover w-full h-[400px]">
+                </div>
 
-                <div class="prose dark:prose-invert">
+                <div class="prose dark:prose-invert mt-4">
                     <p>{!! $blog->content !!}</p>
                 </div>
             </article>

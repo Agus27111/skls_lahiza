@@ -22,9 +22,9 @@ class Blog extends Model
 
     // Mutator untuk slug
     public function setSlugAttribute($value)
-{
-    $this->attributes['slug'] = $value ?: ($this->title ? Str::slug($this->title) : null);
-}
+    {
+        $this->attributes['slug'] = $value ?: ($this->title ? Str::slug($this->title) : null);
+    }
 
 
     public function category()

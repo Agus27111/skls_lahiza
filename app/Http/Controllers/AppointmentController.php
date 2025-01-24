@@ -41,7 +41,8 @@ class AppointmentController extends Controller
     public function show(Appointment $appointment)
     {
         //
-        return view('admin.appointments.details', compact('appointment'));
+        $appointments = Appointment::all();
+        return view('admin.appointments.details', compact('appointments'));
     }
 
     /**

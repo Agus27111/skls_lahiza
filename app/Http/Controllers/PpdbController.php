@@ -16,7 +16,7 @@ class PpdbController extends Controller
      */
     public function index()
     {
-       
+
          $ppdbs = Ppdb::orderByDesc('id')->paginate(2);
          return view('admin.ppdb.index', compact('ppdbs'));
     }
@@ -38,16 +38,21 @@ class PpdbController extends Controller
         //
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
-            if($request->hasFile('image1')){
-                $thumbnailPath = $request->file('image1')->store('image1s', 'public');
-                $validated['image1'] = $thumbnailPath;
-            }
-            if($request->hasFile('image2')){
-                $thumbnailPath = $request->file('image2')->store('image2s', 'public');
-                $validated['image2'] = $thumbnailPath;
-            }
 
-            $newDataRecord = Ppdb::create($validated);
+             // Memeriksa dan meng-upload image1
+        if ($request->hasFile('image1')) {
+            $image1Path = $request->file('image1')->store('image1s', 'public');
+            $validated['image1'] = $image1Path;
+        }
+
+        // Memeriksa dan meng-upload image2
+        if ($request->hasFile('image2')) {
+            $image2Path = $request->file('image2')->store('image2s', 'public');
+            $validated['image2'] = $image2Path;
+        }
+
+        // Membuat entri baru di database
+        $newDataRecord = Ppdb::create($validated);
         });
 
         return redirect()->route('admin.ppdb.index');
@@ -79,13 +84,15 @@ class PpdbController extends Controller
         DB::transaction(function () use ($request, $ppdb) {
             $validated = $request->validated();
 
-            if($request->hasFile('image1')){
-                $thumbnailPath = $request->file('image1')->store('image1s', 'public');
-                $validated['image1'] = $thumbnailPath;
+            if ($request->hasFile('image1')) {
+                $image1Path = $request->file('image1')->store('image1s', 'public');
+                $validated['image1'] = $image1Path;
             }
-            if($request->hasFile('image2')){
-                $thumbnailPath = $request->file('image2')->store('image2s', 'public');
-                $validated['image2'] = $thumbnailPath;
+
+            // Memeriksa dan meng-upload image2
+            if ($request->hasFile('image2')) {
+                $image2Path = $request->file('image2')->store('image2s', 'public');
+                $validated['image2'] = $image2Path;
             }
 
             $ppdb->update($validated);

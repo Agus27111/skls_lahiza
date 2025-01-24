@@ -52,7 +52,10 @@
                         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
                             <a href="/blog/{{ $blog->slug }}">{{ $blog->title }}</a>
                         </h2>
-                        <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($blog->content, 100) }}</p>
+                        <div class="mt-4">
+                            <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}" class="rounded-lg object-cover w-full h-[200px]">
+                        </div>
+                        <p class="mt-4 mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($blog->content, 100) }}</p>
                         <div class="flex justify-between items-center">
                             <div class="flex items-center space-x-4">
                                 <a href="/blogs?author={{ $blog->author }}" class="font-medium text-gray-900 dark:text-white hover:underline">

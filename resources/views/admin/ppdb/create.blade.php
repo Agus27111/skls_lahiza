@@ -27,16 +27,18 @@
                     <div class="mt-4">
                         <x-input-label for="image1" :value="__('image1')" />
                         <img src="{{ Storage::url($ppdb->image1) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="image1" class="block mt-1 w-full" type="file" name="image1" autofocus autocomplete="image1" />
+                        <x-text-input id="image1" class="block mt-1 w-full" type="file" name="image1" autofocus autocomplete="image1" placeholder="max-2mb" />
+                        <p class="text-sm text-gray-500 mt-2">Max size: 1MB</p> <!-- Menambahkan teks petunjuk -->
                         <x-input-error :messages="$errors->get('image1')" class="mt-2" />
                     </div>
+
                     <div class="mt-4">
                         <x-input-label for="image2" :value="__('image2')" />
                         <img src="{{ Storage::url($ppdb->image2) }}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="image2" class="block mt-1 w-full" type="file" name="image2" autofocus autocomplete="image2" />
+                        <x-text-input id="image2" class="block mt-1 w-full" type="file" name="image2" autofocus autocomplete="image2" placeholder="max-2mb" />
+                        <p class="text-sm text-gray-500 mt-2">Max size: 1MB</p> <!-- Menambahkan teks petunjuk -->
                         <x-input-error :messages="$errors->get('image2')" class="mt-2" />
                     </div>
-
 
                     <div class="flex items-center justify-end mt-4">
 
