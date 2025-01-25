@@ -6,137 +6,62 @@
           <x-navbar />
           <div class="flex flex-col gap-[50px] items-center py-20">
             <div class="breadcrumb flex items-center justify-center gap-[30px]">
-              <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Book Page</p>
-              <span class="text-cp-light-grey"></span>
-              <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">About Us</p>
+              <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
+              <span class="text-cp-light-grey">/</span>
+              <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Kumpulan Buku</p>
             </div>
-            <h2 class="font-bold text-4xl leading-[45px] text-center">Since Beginning We Only <br> Want to Make World Better</h2>
+            <h2 class="font-bold text-4xl leading-[45px] text-center">Gunakanlah buku ini  <br> sebagai pelengkap kegiatan belajar</h2>
           </div>
       </div>
     </div>
-    <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+    <div id="Books" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+        <div class="flex flex-col gap-y-10">
+            @forelse ($kelas as $class)
+                <div class="overflow-x-auto bg-white border rounded-lg shadow-sm p-5">
+                    <!-- Judul Kelas -->
+                    <h2 class="text-indigo-950 text-2xl font-bold mb-5">Kelas: {{ $class->name }}</h2>
+                    <table class="min-w-full bg-white border rounded-lg">
+                        <thead>
+                            <tr class="bg-indigo-700 text-white">
+                                <th class="py-3 px-4 text-left">Judul Buku</th>
+                                <th class="py-3 px-4 text-left">Thumbnail</th>
+                                <th class="py-3 px-4 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                // Filter books untuk kelas ini
+                                $filteredBooks = $books->where('class_model_id', $class->id);
+                            @endphp
+                            @forelse ($filteredBooks as $book)
+                                <tr class="border-b">
+                                    <td class="py-3 px-4">{{ $book->title }}</td>
+                                    <td class="py-3 px-4">
+                                        <img src="{{ Storage::url($book->thumbnail) }}" alt="{{ $book->title }}" class="w-20 h-20 object-cover rounded-md">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <a href="{{ Storage::url($book->url) }}" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" download>
+                                            Download
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="py-3 px-4 text-center text-gray-500">
+                                        No books available for this class.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            @empty
+                <p class="text-center text-gray-500">No classes found.</p>
+            @endforelse
+        </div>
+    </div>
 
-    </div>
-    <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
-      <h2 class="font-bold text-lg">Trusted by 500+ Top Leaders Worldwide</h2>
-      <div class="logo-container flex flex-wrap gap-5 justify-center">
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-54.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-52.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-55.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-44.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-51.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-55.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-52.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-54.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-        <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-          <div class="overflow-hidden h-9">
-            <img src="assets/logo/logo-51.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="Stats" class="bg-cp-black w-full mt-20">
-
-      </div>
-    <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-
-      </div>
-    </div>
-    <footer class="bg-cp-black w-full relative overflow-hidden mt-20">
-      <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-between pt-[100px] pb-[220px] relative z-10">
-        <div class="flex flex-col gap-10">
-          <div class="flex items-center gap-3">
-            <div class="flex shrink-0 h-[43px] overflow-hidden">
-                <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
-            </div>
-            <div class="flex flex-col">
-              <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">ShaynaComp</p>
-              <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/youtube.svg" class="w-full h-full object-contain" alt="youtube">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/whatsapp.svg" class="w-full h-full object-contain" alt="whatsapp">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/facebook.svg" class="w-full h-full object-contain" alt="facebook">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/instagram.svg" class="w-full h-full object-contain" alt="instagram">
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-[50px]">
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">Products</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">General Contract</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Building Assessment</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">3D Paper Builder</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Legal Constructions</a>
-          </div>
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">About</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">We’re Hiring</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Our Big Purposes</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Investor Relations</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Media Press</a>
-          </div>
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">Useful Links</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Privacy & Policy</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Terms & Conditions</a>
-            <a href="contact.html" class="text-cp-light-grey hover:text-white transition-all duration-300">Contact Us</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Download Template</a>
-          </div>
-        </div>
-      </div>
-      <div class="absolute -bottom-[135px] w-full">
-        <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">SHAYNA</p>
-      </div>
-    </footer>
+    <x-footer/>
 
 
 

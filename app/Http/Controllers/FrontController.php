@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
 use App\Http\Requests\StoreAppointmentRequest;
+use App\Models\Book;
+use App\Models\ClassModel;
+use App\Models\Ppdb;
 
 class FrontController extends Controller
 {
@@ -64,15 +67,20 @@ class FrontController extends Controller
             $newAppointment = Appointment::create($validated);
 
             // Kirim pesan WhatsApp ke owner
-            $ownerPhone = '6287822368008'; // Ganti dengan nomor WhatsApp owner
+            $ownerPhone = env('WHATSAPP_OWNER_PHONE');
             $message = urlencode("Pendaftar Baru:\n"
-                . "Name: {$newAppointment->name}\n"
-                . "Email: {$newAppointment->email}\n"
-                . "Phone: {$newAppointment->phone_number}\n"
-                . "Meeting Date: {$newAppointment->meeting_at}\n"
-                . "Product Interest: {$newAppointment->product->name}\n"
-                . "Budget: Rp {$newAppointment->budget}\n"
-                . "Brief: {$newAppointment->brief}");
+            . "Nama Lengkap: {$newAppointment->name}\n"
+            . "Email: {$newAppointment->email}\n"
+            . "Nomor Telepon: {$newAppointment->phone_number}\n"
+            . "Tanggal Lahir: {$newAppointment->date_of_birth}\n"
+            . "Tempat Lahir: {$newAppointment->birth_place}\n"
+            . "Alamat: {$newAppointment->address}\n"
+            . "Nama Ayah: {$newAppointment->father}\n"
+            . "Nama Ibu: {$newAppointment->mother}\n"
+            . "Pesan: {$newAppointment->message}\n"
+            . "Jenjang: {$newAppointment->product->name}\n"
+        );
+
 
             $whatsappUrl = "https://wa.me/{$ownerPhone}?text={$message}";
         });
@@ -135,14 +143,14 @@ class FrontController extends Controller
         ]);
     }
 
-
-
-
     public function ppdb(){
-
+        $ppdb = Ppdb::all();
+        return view('front.ppdb', compact('ppdb'));
     }
     public function book(){
-
+        $books = Book::all();
+        $kelas = ClassModel::all();
+        return view('front.book', compact('books', 'kelas'));
     }
 
 }

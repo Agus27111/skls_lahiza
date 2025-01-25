@@ -417,69 +417,7 @@
 </div>
   </div>
 
-  <footer class="bg-cp-black w-full relative overflow-hidden mt-20">
-    <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-between pt-[100px] pb-[220px] relative z-10">
-      <div class="flex flex-col gap-10">
-        <div class="flex items-center gap-3">
-          <div class="flex shrink-0 h-[43px] overflow-hidden">
-              <img src="{{asset('assets/logo/logo.svg')}}" class="object-contain w-full h-full" alt="logo">
-          </div>
-          <div class="flex flex-col">
-            <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">ShaynaComp</p>
-            <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-4">
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="{{asset('assets/icons/youtube.svg')}}" class="w-full h-full object-contain" alt="youtube">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="{{asset('assets/icons/whatsapp.svg')}}" class="w-full h-full object-contain" alt="whatsapp">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="{{asset('assets/icons/facebook.svg')}}" class="w-full h-full object-contain" alt="facebook">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="{{asset('assets/icons/instagram.svg')}}" class="w-full h-full object-contain" alt="instagram">
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-[50px]">
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">Products</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">General Contract</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Building Assessment</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">3D Paper Builder</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Legal Constructions</a>
-        </div>
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">About</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">We’re Hiring</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Our Big Purposes</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Investor Relations</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Media Press</a>
-        </div>
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">Useful Links</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Privacy & Policy</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Terms & Conditions</a>
-          <a href="contact.html" class="text-cp-light-grey hover:text-white transition-all duration-300">Contact Us</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Download Template</a>
-        </div>
-      </div>
-    </div>
-    <div class="absolute -bottom-[135px] w-full">
-      <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">SHAYNA</p>
-    </div>
-  </footer>
+  <x-footer/>
   <div id="video-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative p-4 w-full lg:w-1/2 max-h-full">
           <!-- Modal content -->
@@ -487,7 +425,7 @@
               <!-- Modal header -->
               <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                   <h3 class="text-xl font-semibold text-cp-black">
-                      Company Profile Video
+                      Lahiza Profile Video
                   </h3>
                   <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" onclick="{modal.hide()}">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -527,3 +465,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <script src="{{asset ('js/modal-video.js') }}"></script>
   @endpush
+
+
+  @section('floating-whatsapp')
+  <a
+  href="{{ config('app.whatsapp_link') }}"
+  class="fixed bottom-4 right-4 bg-green-500 text-white w-16 h-16 p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat via WhatsApp"
+>
+  <!-- Ikon WhatsApp dari FontAwesome -->
+  <i class="fab fa-whatsapp text-2xl"></i>
+</a>
+
+
+    @endsection

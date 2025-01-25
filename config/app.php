@@ -123,4 +123,19 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+    /*
+     * Package Service Providers...
+     */
+    Maatwebsite\Excel\ExcelServiceProvider::class,
+    ],
+
+    'aliases' => [
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+    ],
+
+    'whatsapp_link' => env('WHATSAPP_LINK', 'https://wa.me/defaultnumber'),
+    'fecebook_link' => env('FACEBOOK_LINK', 'https://www.facebook.com/'),
+    'youtube_link' => env('YOUTUBE_LINK', 'https://www.youtube.com/'),
+
 ];

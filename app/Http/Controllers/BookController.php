@@ -19,8 +19,9 @@ class BookController extends Controller
     public function index()
     {
         //
+        $kelas = ClassModel::orderByDesc('id')->paginate(10);
         $books = Book::orderByDesc('id')->paginate(10);
-        return view('admin.books.index', compact('books'));
+        return view('admin.books.index', compact('books', 'kelas'));
     }
 
     /**

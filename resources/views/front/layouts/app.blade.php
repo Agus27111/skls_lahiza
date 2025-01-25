@@ -14,13 +14,17 @@
   <!-- CSS for modal/flowbite -->
   @vite(['resources/css/app.css','resources/js/app.js'])
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" /> -->
 </head>
 <body class="font-poppins text-cp-black">
 
+
         @yield('content')
+
+        @yield('floating-whatsapp')
 
         @stack('before-scripts')
         {{-- File JS semua halaman --}}

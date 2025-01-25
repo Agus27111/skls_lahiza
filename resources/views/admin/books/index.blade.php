@@ -12,43 +12,51 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
-                @forelse ($books as  $book)
-                <div class="item-card flex flex-row justify-between items-center">
-                    <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Kelas</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">{{ $book->classModel->name }}</h3>
-                    </div>
-                    <div class="flex flex-row items-center gap-x-3">
-                        <img src="{{ $book->thubmnail }} " alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $book->title }}</h3>
-                        </div>
-                    </div>
-                    <div  class="hidden md:flex flex-col">
-                        <a href="{{ asset('storage/' . $book->url) }}" target="_blank">View PDF</a>
-                        <a href="{{ asset('storage/' . $book->url) }}" download>Download PDF</a>
-                    </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-10">
+                @forelse ($kelas as $class)
+                    <!-- Tampilkan Kelas -->
+                    <div>
+                        <h2 class="text-indigo-950 text-2xl font-bold mb-5">Kelas: {{ $class->name }}</h2>
+                        @php
+                            $filteredBooks = $books->where('class_model_id', $class->id);
+                        @endphp
 
-                    {{-- Button --}}
-                    <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href="{{route('admin.books.edit', $book)}}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Edit
-                        </a>
-                        <form action=" {{route('admin.books.destroy', $book)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
-                                Delete
-                            </button>
-                        </form>
+                        <!-- Tabel Buku untuk Kelas Ini -->
+                        @if ($filteredBooks->count() > 0)
+                            <table class="min-w-full bg-white border rounded-lg">
+                                <thead>
+                                    <tr class="bg-indigo-700 text-white">
+                                        <th class="py-3 px-4 text-left">Thumbnail</th>
+                                        <th class="py-3 px-4 text-left">Title</th>
+                                        <th class="py-3 px-4 text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($filteredBooks as $book)
+                                        <tr class="border-b">
+                                            <td class="py-3 px-4">
+                                                <img src="{{ $book->thubmnail }}" alt="Thumbnail" class="w-[90px] h-[90px] object-cover rounded-2xl">
+                                            </td>
+                                            <td class="py-3 px-4">
+                                                <h3 class="text-indigo-950 text-xl font-bold">{{ $book->title }}</h3>
+                                            </td>
+                                            <td class="py-3 px-4 text-center">
+                                                <a href="{{ asset('storage/' . $book->url) }}" class="text-indigo-600 hover:underline mr-4" target="_blank">View PDF</a>
+                                                <a href="{{ asset('storage/' . $book->url) }}" class="text-green-600 hover:underline" download>Download PDF</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <p class="text-gray-500">No books available for this class.</p>
+                        @endif
                     </div>
-                </div>
                 @empty
-                <p>No Abouts Found</p>
-
+                    <p class="text-gray-500">No classes found.</p>
                 @endforelse
             </div>
+
         </div>
     </div>
 </x-app-layout>

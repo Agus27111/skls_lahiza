@@ -47,5 +47,6 @@
     </main>
     </div>
 </div>
+<x-footer/>
     @endsection
 

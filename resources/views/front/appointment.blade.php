@@ -12,35 +12,42 @@
           <div class="breadcrumb flex items-center gap-[30px]">
             <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
             <span class="text-cp-light-grey">/</span>
-            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Product</p>
+            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">PPDB</p>
             <span class="text-cp-light-grey">/</span>
-            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Appointment</p>
+            <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Daftar</p>
           </div>
-          <h1 class="font-extrabold text-4xl leading-[45px]">We Help You to Build Awesome Project</h1>
+          <h1 class="font-extrabold text-4xl leading-[45px]">Bersama menemukan bakat anak</h1>
           <div class="flex flex-col gap-5">
             <div class="flex items-center gap-[10px]">
               <div class="w-6 h-6 flex shrink-0">
                 <img src="assets/icons/global.svg" alt="icon">
               </div>
-              <p class="text-cp-dark-blue font-semibold">No 96, Anggapati Jakarta</p>
+              <p class="text-cp-dark-blue font-semibold">Kandanghaur, Indramayu</p>
             </div>
             <div class="flex items-center gap-[10px]">
               <div class="w-6 h-6 flex shrink-0">
                 <img src="assets/icons/call.svg" alt="icon">
               </div>
-              <p class="text-cp-dark-blue font-semibold">(021) 22081996</p>
+              <p class="text-cp-dark-blue font-semibold">xxxxxxx</p>
             </div>
             <div class="flex items-center gap-[10px]">
               <div class="w-6 h-6 flex shrink-0">
                 <img src="assets/icons/monitor-mobbile.svg" alt="icon">
               </div>
-              <p class="text-cp-dark-blue font-semibold">shaynacomp.com</p>
+              <p class="text-cp-dark-blue font-semibold">lahizasunnah.com</p>
             </div>
           </div>
         </div>
         <form action="{{ route('front.appointment_store') }}" class="flex flex-col p-[30px] rounded-[20px] gap-[18px] bg-white shadow-[0_10px_30px_0_#D1D4DF40] w-full md:w-[700px] shrink-0" method="POST">
             @csrf
             @method('POST')
+
+            @if (session('success'))
+                <div class="bg-green-500 text-white p-4 rounded-lg mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
 
             <!-- Nama Lengkap -->
             <div class="flex flex-col gap-2">
@@ -54,7 +61,7 @@
             <!-- Nomor Telepon -->
             <div class="flex flex-col gap-2">
               <p class="font-semibold">Nomor Telepon</p>
-              <input type="tel" name="phone_number" placeholder="62xxxxxxxxxxx" class="p-3 border rounded-lg {{ $errors->has('phone_number') ? 'border-red-500' : '' }}" value="{{ old('phone_number') }}" required pattern="^62\d{9,13}$">
+              <input type="tel" name="phone_number" placeholder="6287xxxxxxxxxxx" class="p-3 border rounded-lg {{ $errors->has('phone_number') ? 'border-red-500' : '' }}" value="{{ old('phone_number') }}" required pattern="^62\d{9,13}$">
               @if ($errors->has('phone_number'))
                 <span class="text-red-500 text-sm">{{ $errors->first('phone_number') }}</span>
               @endif
@@ -136,9 +143,9 @@
               @endif
             </div>
 
-            <!-- Produk -->
+            <!-- Jenjang -->
             <div class="flex flex-col gap-2">
-              <p class="font-semibold">Pilih Produk</p>
+              <p class="font-semibold">Pilih Jenjang Pendidikan</p>
               <select name="product_id" class="p-3 border rounded-lg {{ $errors->has('product_id') ? 'border-red-500' : '' }}" required>
                 <option value="" hidden>Pilih produk</option>
                 @foreach ($products as $product)
@@ -220,69 +227,7 @@
 
         </div>
       </div>
-    <footer class="bg-cp-black w-full relative overflow-hidden mt-20">
-      <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-between pt-[100px] pb-[220px] relative z-10">
-        <div class="flex flex-col gap-10">
-          <div class="flex items-center gap-3">
-            <div class="flex shrink-0 h-[43px] overflow-hidden">
-                <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
-            </div>
-            <div class="flex flex-col">
-              <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">ShaynaComp</p>
-              <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/youtube.svg" class="w-full h-full object-contain" alt="youtube">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/whatsapp.svg" class="w-full h-full object-contain" alt="whatsapp">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/facebook.svg" class="w-full h-full object-contain" alt="facebook">
-              </div>
-            </a>
-            <a href="">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="assets/icons/instagram.svg" class="w-full h-full object-contain" alt="instagram">
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-[50px]">
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">Products</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">General Contract</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Building Assessment</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">3D Paper Builder</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Legal Constructions</a>
-          </div>
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">About</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">We’re Hiring</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Our Big Purposes</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Investor Relations</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Media Press</a>
-          </div>
-          <div class="flex flex-col w-[200px] gap-3">
-            <p class="font-bold text-lg text-white">Useful Links</p>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Privacy & Policy</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Terms & Conditions</a>
-            <a href="contact.html" class="text-cp-light-grey hover:text-white transition-all duration-300">Contact Us</a>
-            <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Download Template</a>
-          </div>
-        </div>
-      </div>
-      <div class="absolute -bottom-[135px] w-full">
-        <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">LAHIZA</p>
-      </div>
-    </footer>
+    <x-footer/>
 
     @endsection
 
