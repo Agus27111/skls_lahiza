@@ -10,11 +10,11 @@
               <span class="text-cp-light-grey">/</span>
               <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">About Us</p>
             </div>
-            <h2 class="font-bold text-4xl leading-[45px] text-center">Since Beginning We Only <br> Want to Make World Better</h2>
+            <h2 class="font-bold text-4xl leading-[45px] text-center">Sekolah Kami Dirikan <br> Untuk Menumbuhkan Fitrah Anak</h2>
           </div>
       </div>
     </div>
-    <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+   <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
         @forelse ($abouts as $about )
 
         <div class="product flex flex-wrap justify-center items-center gap-[60px] even:flex-row-reverse">
@@ -31,11 +31,13 @@
                         <div class="w-6 h-6 flex shrink-0">
                           <img src="assets/icons/tick-circle.svg" alt="icon">
                         </div>
-                        <p class="leading-[26px] font-semibold">Commit to delivering the highest quality in every project. Set the standard for excellence world</p>
+                        <p class="leading-[26px] font-semibold">{{ $keypoint->keypoint }}</p>
                       </div>
                     @empty
                       <p>Tidak ada data terbaru</p>
                     @endforelse
+
+
                 </div>
               </div>
             </div>
@@ -45,7 +47,7 @@
         <p>Belum ada data terbaru</p>
         @endforelse
     </div>
-    <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
+     {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
       <h2 class="font-bold text-lg">Trusted by 500+ Top Leaders Worldwide</h2>
       <div class="logo-container flex flex-wrap gap-5 justify-center">
         <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
@@ -162,7 +164,7 @@
           <p class="text-cp-light-grey">Bandung, 2023</p>
         </div>
       </div>
-    </div>
+    </div> --}}
     <x-footer/>
 
 

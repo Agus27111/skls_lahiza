@@ -27,6 +27,7 @@ Route::post('/appointment/store', [FrontController::class, 'appointment_store'])
 Route::get('/ppdb', [FrontController::class, 'ppdb'])->name('front.ppdb');
 Route::get('/book', [FrontController::class, 'book'])->name('front.book');
 Route::get('/blog', [FrontController::class, 'blogs'])->name('front.blogs');
+Route::get('/dokumentasi', [FrontController::class, 'dokumentasi'])->name('front.dokumentasi');
 
 //slug
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('front.blog');

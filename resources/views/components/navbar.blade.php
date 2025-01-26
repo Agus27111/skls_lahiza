@@ -1,11 +1,11 @@
 <nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3">
     <div class="flex items-center gap-3">
         <div class="flex shrink-0 h-[43px] overflow-hidden">
-            <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
+            <img src="assets/logo/yls.png" class="object-contain w-full h-full" alt="logo">
         </div>
         <div class="flex flex-col">
-          <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">ShaynaComp</p>
-          <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+          <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Lahiza Sunnah</p>
+          <p id="CompanyTagline" class="text-sm text-cp-light-grey">Sekolah Karakter Nabawiyah</p>
         </div>
     </div>
     <ul class="flex flex-wrap items-center gap-[30px]">
@@ -24,10 +24,13 @@
                 class="hidden absolute bg-white shadow-lg rounded-md mt-2 w-[200px]"
             >
                 <li class="{{ request()->routeIs('front.team') ? 'bg-gray-100' : '' }} hover:bg-gray-100 transition-all duration-300">
-                    <a href="{{ route('front.team') }}" class="block py-2 px-4">Team</a>
+                    <a href="{{ route('front.team') }}" class="block py-2 px-4">Team Guru</a>
                 </li>
                 <li class="{{ request()->routeIs('front.about') ? 'bg-gray-100' : '' }} hover:bg-gray-100 transition-all duration-300">
-                    <a href="{{ route('front.about') }}" class="block py-2 px-4">About</a>
+                    <a href="{{ route('front.about') }}" class="block py-2 px-4">Tentang Kami</a>
+                </li>
+                <li class="{{ request()->routeIs('front.dokumentasi') ? 'bg-gray-100' : '' }} hover:bg-gray-100 transition-all duration-300">
+                    <a href="{{ route('front.dokumentasi') }}" class="block py-2 px-4">Dokumentasi</a>
                 </li>
             </ul>
         </li>
@@ -36,7 +39,7 @@
             <a href="{{ route('front.blogs') }}">Blog</a>
         </li>
         <li class="{{ request()->routeIs('front.book') ? 'text-cp-dark-blue' : '' }} font-semibold hover:text-cp-dark-blue transition-all duration-300">
-            <a href="{{ route('front.book') }}">Buku</a>
+            <a href="{{ route('front.book') }}">Modul</a>
         </li>
         <li class="{{ request()->routeIs('front.ppdb') ? 'text-cp-dark-blue' : '' }} font-semibold hover:text-cp-dark-blue transition-all duration-300">
             <a href="{{ route('front.ppdb') }}">PPDB</a>
@@ -44,7 +47,7 @@
     </ul>
 
 
-    <a href="{{ route('front.appointment') }}" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Dafftar PPDB</a>
+    <a href="{{ route('front.appointment') }}" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Daftar PPDB</a>
 </nav>
 
 

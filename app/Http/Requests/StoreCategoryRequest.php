@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -29,11 +30,12 @@ class StoreCategoryRequest extends FormRequest
                         'max:255',
                         'unique:categories,name'
                     ],
-                    // 'slug'=>[
-                    //     'required',
-                    //     'string',
-                    //     'max:255',
-                    // ],
+                    'slug' => [
+                        'nullable',
+                        'string',
+                        'max:255',
+                        Rule::unique('activities'),
+                    ],
                     'color'=>['required', 'regex:/^#[0-9A-Fa-f]{6}$/']
                 ];
 

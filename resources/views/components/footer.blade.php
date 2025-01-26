@@ -3,11 +3,11 @@
       <div class="flex flex-col gap-10">
         <div class="flex items-center gap-3">
           <div class="flex shrink-0 h-[43px] overflow-hidden">
-              <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
+              <img src="assets/logo/yls.png" class="object-contain w-full h-full" alt="logo">
           </div>
           <div class="flex flex-col">
             <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">Lahiza Sunnah</p>
-            <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+            <p id="CompanyTagline" class="text-sm text-cp-light-grey">Sekolah Karakter Nabawiyah</p>
           </div>
         </div>
         <div class="flex items-center gap-4">

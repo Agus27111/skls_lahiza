@@ -147,7 +147,7 @@
             <div class="flex flex-col gap-2">
               <p class="font-semibold">Pilih Jenjang Pendidikan</p>
               <select name="product_id" class="p-3 border rounded-lg {{ $errors->has('product_id') ? 'border-red-500' : '' }}" required>
-                <option value="" hidden>Pilih produk</option>
+                <option value="" hidden>Pilih jenjang</option>
                 @foreach ($products as $product)
                   <option value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }}>
                     {{ $product->name }}

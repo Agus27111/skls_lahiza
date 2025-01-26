@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
 use App\Http\Requests\StoreAppointmentRequest;
+use App\Models\Activity;
 use App\Models\Book;
 use App\Models\ClassModel;
 use App\Models\Ppdb;
@@ -37,7 +38,7 @@ class FrontController extends Controller
     }
 
     public function team(){
-        $teams = OurTeam::take(7)->get();
+        $teams = OurTeam::all();
         $statistics = CompanyStatistic::take(4)->get();
         return view('front.team', compact('teams', 'statistics'));
     }
@@ -151,6 +152,11 @@ class FrontController extends Controller
         $books = Book::all();
         $kelas = ClassModel::all();
         return view('front.book', compact('books', 'kelas'));
+    }
+
+    public function dokumentasi(){
+        $dokumentasi=Activity::all();
+        return view('front.dokumentasi', compact('dokumentasi'));
     }
 
 }

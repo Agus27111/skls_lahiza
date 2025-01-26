@@ -21,7 +21,7 @@
                     <a href="/blog" class="font-medium text-xs text-blue-600 hover:underline">&laquo; Back to all blogs </a>
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                            <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="{{ $blog->author}}" />
+                            {{-- <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="{{ $blog->author}}" /> --}}
                             <div>
                                 <a href="/blog?author={{ $blog->author }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $blog->author }}</a>
                                 <p class="text-base text-gray-500 dark:text-gray-400 mb-1">{{ $blog->created_at->diffForHumans() }}</p>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="prose dark:prose-invert mt-4">
-                    <p>{!! $blog->content !!}</p>
+                    <p>{!! nl2br(e($blog->content)) !!}</p>
                 </div>
             </article>
         </div>

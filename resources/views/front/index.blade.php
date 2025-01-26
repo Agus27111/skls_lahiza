@@ -11,32 +11,48 @@
             <div class="w-5 h-5 flex shrink-0 overflow-hidden">
               <img src="{{asset('assets/icons/crown.svg')}}" class="object-contain" alt="icon">
             </div>
-            <p class="font-semibold text-sm">We reached 10,000 huge buildings in 2024</p>
+            <p class="font-semibold text-sm">"Sekolah Karakter Nabawiyah"</p>
           </div>
           <div class="flex flex-col gap-[10px]">
-            <h1 class="font-extrabold text-[50px] leading-[65px] max-w-[536px]">Help Build Biggest <br> Dream From Scratch</h1>
-            <p class="text-cp-light-grey leading-[30px] max-w-[437px]">Shayna is an award-winning construction company with a team of skilled craftsmen and women who have over 100 years of combined experience.</p>
+            <h1 class="font-extrabold text-[50px] leading-[65px] max-w-[536px]">{{$heroSection->heading}} <br>{{$heroSection->subheading}}</h1>
+            <p class="text-cp-light-grey leading-[30px] max-w-[437px]">{{$heroSection->achievement}}</p>
           </div>
           <div class="flex items-center gap-4">
-            <a href="" class="bg-cp-dark-blue p-5 w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Explore Now</a>
-            <button class="bg-cp-black p-5 w-fit rounded-xl font-bold text-white flex items-center gap-[10px]" onclick="{modal.show()}">
-              <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-                <img src="{{asset('assets/icons/play-circle.svg')}}" class="w-full h-full object-contain" alt="icon">
-              </div>
-              <span>Watch Video</span>
-            </button>
+            <a href="/about" class="bg-cp-dark-blue p-5 w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Explore Now</a>
+
           </div>
         </div>
 
     </div>
     <div class="absolute w-[43%] h-full top-0 right-0 overflow-hidden z-0">
-        <img src="{{asset('assets/backgrounds/banner.jpg')}}" class="object-cover w-full h-full" alt="banner">
+        <img src="{{Storage::url($heroSection->banner)}}" class="object-cover w-full h-full" alt="banner">
     </div>
     @empty
     <p>Tidak ada data Hero</p>
     @endforelse
   </div>
-  <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
+  <div id="Stats" class="bg-violet-700 w-[80%] rounded-full mt-20 z-10 relative -mt-12 left-1/2 transform -translate-x-1/2">
+    <div class="container max-w-[1000px] mx-auto py-6">
+      <div class="flex flex-wrap items-center justify-between p-[10px]">
+
+        @forelse ($statistics as $statistic )
+
+
+        <div class="card w-[200px] flex flex-col items-center gap-[10px] text-center">
+          <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
+            <img src="{{Storage::url($statistic->icon)}}" class="object-contain w-full h-full" alt="icon">
+          </div>
+          <p class="text-cp-pale-orange font-bold text-2xl leading-[34px]">{{ $statistic->goal }}</p>
+          <p class="text-cp-light-grey">{{ $statistic->name }}</p>
+        </div>
+        @empty
+        <p>belum ada data terbaru </p>
+
+        @endforelse
+      </div>
+    </div>
+  </div>
+  {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
     <h2 class="font-bold text-lg">Trusted by 500+ Top Leaders Worldwide</h2>
     <div class="logo-container flex flex-wrap gap-5 justify-center">
       <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
@@ -85,8 +101,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+  </div> --}}
+  {{-- <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
     <div class="flex items-center justify-between">
       <div class="flex flex-col gap-[14px]">
         <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">OUR PRINCIPLES</p>
@@ -117,33 +133,13 @@
     @endforelse
 
     </div>
-  </div>
-  <div id="Stats" class="bg-cp-black w-full mt-20">
-    <div class="container max-w-[1000px] mx-auto py-10">
-      <div class="flex flex-wrap items-center justify-between p-[10px]">
+  </div> --}}
 
-        @forelse ($statistics as $statistic )
-
-
-        <div class="card w-[200px] flex flex-col items-center gap-[10px] text-center">
-          <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-            <img src="{{Storage::url($statistic->icon)}}" class="object-contain w-full h-full" alt="icon">
-          </div>
-          <p class="text-cp-pale-orange font-bold text-4xl leading-[54px]">{{ $statistic->goal }}</p>
-          <p class="text-cp-light-grey">{{ $statistic->name }}</p>
-        </div>
-        @empty
-        <p>belum ada data terbaru </p>
-
-        @endforelse
-      </div>
-    </div>
-  </div>
   <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
     @forelse ($products as  $product)
     <div class="product flex flex-wrap justify-center items-center gap-[60px] even:flex-row-reverse">
-      <div class="w-[470px] h-[550px] flex shrink-0 overflow-hidden">
-        <img src="{{Storage::url($product->thumbnail)}}" class="w-full h-full object-contain" alt="thumbnail">
+      <div class="w-[470px] h-[550px] flex shrink-0 overflow-hidden rounded-xl">
+        <img src="{{Storage::url($product->thumbnail)}}" class="w-full h-full object-cover rounded-xl" alt="thumbnail">
       </div>
       <div class="flex flex-col gap-[30px] py-[50px] h-fit max-w-[500px]">
         <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">{{ $product->tagline }}</p>
@@ -151,7 +147,7 @@
           <h2 class="font-bold text-4xl leading-[45px]">{{ $product->name }}</h2>
           <p class="leading-[30px] text-cp-light-grey">{{ $product->about }}</p>
         </div>
-        <a href="{{ route('front.appointment') }}" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Book Appointment</a>
+        <a href="{{ route('front.appointment') }}" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Daftar</a>
       </div>
     </div>
     @empty
@@ -162,8 +158,8 @@
   <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">
     <div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] items-center">
       <div class="flex flex-col gap-[14px] items-center">
-        <p class="badge w-fit bg-cp-light-blue text-white p-[8px_16px] rounded-full uppercase font-bold text-sm">OUR POWERFUL TEAM</p>
-        <h2 class="font-bold text-4xl leading-[45px] text-center">We Share Same Dreams <br> Change The World</h2>
+        <p class="badge w-fit bg-cp-light-blue text-white p-[8px_16px] rounded-full uppercase font-bold text-sm">OUR POWERFUL TEACHER</p>
+        <h2 class="font-bold text-4xl leading-[45px] text-center">Kami Mendampingi <br> Penumbuhan Bakat Siswa/i</h2>
       </div>
       <div class="teams-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
         @forelse ($teams as $team )
@@ -202,7 +198,7 @@
       </div>
     </div>
   </div>
-  <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
+  {{-- <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
     <div class="flex flex-col gap-[14px] items-center">
       <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">SUCCESS CLIENTS</p>
       <h2 class="font-bold text-4xl leading-[45px] text-center">Our Satisfied Clients<br>From Worldwide Company</h2>
@@ -262,8 +258,8 @@
     @endforelse
 
     </div>
-  </div>
-  <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+  </div> --}}
+  {{-- <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
     <div class="flex items-center justify-between">
       <div class="flex flex-col gap-[14px]">
         <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">OUR AWARDS</p>
@@ -309,7 +305,7 @@
         <p class="text-cp-light-grey">Bandung, 2023</p>
       </div>
     </div>
-  </div>
+  </div> --}}
   <div id="FAQ" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20 -mb-20">
     <div class="container max-w-[1000px] mx-auto">
       <div class="flex flex-col lg:flex-row gap-[50px] sm:gap-[70px] items-center">
@@ -322,46 +318,46 @@
           <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
               <div class="flex flex-col p-5 rounded-2xl bg-white w-full">
                   <button class="accordion-button flex justify-between gap-1 items-center" data-accordion="accordion-faq-1">
-                      <span class="font-bold text-lg leading-[27px] text-left">Can installments be beneficial for both?</span>
+                      <span class="font-bold text-lg leading-[27px] text-left">Apa yang dimaksud fitrah?</span>
                       <div class="arrow w-9 h-9 flex shrink-0">
                           <img src="{{asset('assets/icons/arrow-circle-down.svg')}}" class="transition-all duration-300" alt="icon">
                       </div>
                   </button>
                   <div id="accordion-faq-1" class="accordion-content hide">
-                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients assets to the max level so that we chose the best one from Jakarta, Indonesia will also protect post building finished completed ahead one.</p>
+                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">Fitrah adalah potensi bawaan yang diberikan Allah kepada setiap manusia sejak lahir. Fitrah mencakup kemampuan dasar, bakat alami, dan kecenderungan untuk mengenal kebaikan, kebenaran, serta Tuhannya. Dalam pendidikan, fitrah berarti membimbing anak agar potensi alami tersebut berkembang dengan optimal sesuai dengan nilai-nilai Islam dan tuntunan Allah Subhanahu wa Ta'ala.</p>
                   </div>
               </div>
               <div class="flex flex-col p-5 rounded-2xl bg-white w-full">
                   <button class="accordion-button flex justify-between gap-1 items-center" data-accordion="accordion-faq-2">
-                      <span class="font-bold text-lg leading-[27px] text-left">What kind of framework you popular with?</span>
+                      <span class="font-bold text-lg leading-[27px] text-left">Apa perbedaan dengan sekolah islam lain?</span>
                       <div class="arrow w-9 h-9 flex shrink-0">
                           <img src="{{asset('assets/icons/arrow-circle-down.svg')}}" class="transition-all duration-300" alt="icon">
                       </div>
                   </button>
                   <div id="accordion-faq-2" class="accordion-content hide">
-                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients assets to the max level so that we chose the best one from Jakarta, Indonesia will also protect post building finished completed ahead one.</p>
+                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">Sekolah kami fokus pada pengembangan bakat alami setiap anak sesuai fitrahnya, dengan pendekatan holistik yang menggabungkan pendidikan dunia dan akhirat. Kami tidak hanya mengajarkan ilmu pengetahuan, tetapi juga memberikan perhatian khusus untuk membentuk karakter dan keterampilan sosial yang diperlukan dalam kehidupan sehari-hari.</p>
                   </div>
               </div>
               <div class="flex flex-col p-5 rounded-2xl bg-white w-full">
                   <button class="accordion-button flex justify-between gap-1 items-center" data-accordion="accordion-faq-3">
-                      <span class="font-bold text-lg leading-[27px] text-left">What insurance provider do you use?</span>
+                      <span class="font-bold text-lg leading-[27px] text-left">Apakah di sekolah di ajarkan materi umum?</span>
                       <div class="arrow w-9 h-9 flex shrink-0">
                           <img src="{{asset('assets/icons/arrow-circle-down.svg')}}" class="transition-all duration-300" alt="icon">
                       </div>
                   </button>
                   <div id="accordion-faq-3" class="accordion-content hide">
-                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients assets to the max level so that we chose the best one from Jakarta, Indonesia will also protect post building finished completed ahead one.</p>
+                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">Tentu, di Sekolah  kami mengajarkan materi umum sesuai kurikulum nasional. Namun, kami telah menganalisis kebutuhan esensial siswa agar waktu belajar fokus pada hal yang relevan dan bermanfaat. Ditambah pendidikan Islam untuk akhlak mulia dan pengembangan karakter, siswa siap hadapi masa depan.</p>
                   </div>
               </div>
               <div class="flex flex-col p-5 rounded-2xl bg-white w-full">
                   <button class="accordion-button flex justify-between gap-1 items-center" data-accordion="accordion-faq-4">
-                      <span class="font-bold text-lg leading-[27px] text-left">What if we have other questions?</span>
+                      <span class="font-bold text-lg leading-[27px] text-left">Apakah akan ada penjurusan bakat?</span>
                       <div class="arrow w-9 h-9 flex shrink-0">
                           <img src="{{asset('assets/icons/arrow-circle-down.svg')}}" class="transition-all duration-300" alt="icon">
                       </div>
                   </button>
                   <div id="accordion-faq-4" class="accordion-content hide">
-                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients assets to the max level so that we chose the best one from Jakarta, Indonesia will also protect post building finished completed ahead one.</p>
+                      <p class="leading-[30px] text-cp-light-grey pt-[14px]">Ya, di Sekolah kami menyediakan program penjurusan bakat yang dimulai sejak kelas 4 atau sekitar usia 10 tahun. Anak-anak akan mendapatkan bimbingan intensif, termasuk magang dan kegiatan sesuai minat serta bakatnya. Pendekatan ini dirancang untuk mengasah keterampilan mereka sejak dini, membantu mereka memahami potensi diri, dan mempersiapkan masa depan dengan lebih terarah.</p>
                   </div>
               </div>
           </div>
@@ -463,7 +459,7 @@
   <script src="{{asset('js/carousel.js') }}"></script>
   <script src="{{asset ('js/accordion.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-  <script src="{{asset ('js/modal-video.js') }}"></script>
+
   @endpush
 
 

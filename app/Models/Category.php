@@ -24,7 +24,7 @@ class Category extends Model
     public function setSlugAttribute($value)
     {
         // Menggunakan Str::slug untuk membuat slug dengan format huruf kecil dan spasi diganti dengan '-'
-        $this->attributes['slug'] = $value ?: Str::slug($this->attributes['name']);
+        $this->attributes['slug'] = $value ?: ($this->name ? Str::slug($this->name) : null);
     }
 
     public function blog(){
