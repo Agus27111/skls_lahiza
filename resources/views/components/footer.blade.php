@@ -1,7 +1,7 @@
 <footer class="bg-cp-black w-full relative overflow-hidden mt-20">
     <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-between pt-[100px] pb-[50px] relative z-10">
       <div class="flex flex-col gap-10">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 p-4">
           <div class="flex shrink-0 h-[43px] overflow-hidden">
               <img src="assets/logo/yls.png" class="object-contain w-full h-full" alt="logo">
           </div>
@@ -10,7 +10,7 @@
             <p id="CompanyTagline" class="text-sm text-cp-light-grey">Sekolah Karakter Nabawiyah</p>
           </div>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 p-4">
           <a href="{{ config('app.youtube_link') }}" target="_blank">
             <div class="w-6 h-6 flex shrink-0 overflow-hidden">
               <img src="assets/icons/youtube.svg" class="w-full h-full object-contain" alt="youtube">
@@ -33,7 +33,7 @@
           </a>
         </div>
       </div>
-      <div class="flex flex-wrap gap-[50px]">
+      <div class="flex flex-wrap gap-[50px] p-4">
 
         <div class="flex flex-col w-[200px] gap-3">
           <p class="font-bold text-lg text-white">Useful Links</p>

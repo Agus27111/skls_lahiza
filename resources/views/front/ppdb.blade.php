@@ -3,11 +3,9 @@
 <div id="header" class="bg-[#F6F7FA] relative">
     <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
         <x-navbar />
-    <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-
       <div id="activity" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
         {{-- TITLE --}}
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between p-4">
         <div class="flex flex-col gap-[14px]">
           <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">Sekolah Karakter</p>
           <h2 class="font-bold text-4xl leading-[45px]">Brosur PPDB</h2>
@@ -15,9 +13,9 @@
       </div>
 
       @forelse ($ppdb as $item)
-    <p>{{ $item->name }}</p>
+    <p class="p-4">{{ $item->name }}</p>
     @if ($loop->index % 2 == 0)
-        <div class="bg-white shadow-md rounded-lg mb-6 overflow-hidden">
+        <div class="bg-white shadow-md rounded-lg mb-6 overflow-hidden p-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
     @endif
                 <!-- Image and Exp (Explanation) -->
@@ -42,7 +40,7 @@
 @endforelse
 
     </div>
-    </div>
+
 </div>
 <x-footer/>
 </div>

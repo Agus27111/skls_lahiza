@@ -6,7 +6,7 @@
         @forelse ($heroSections as  $heroSection)
 
 
-        <div id="Hero" class="flex flex-col gap-[30px] mt-20 pb-20">
+        <div id="Hero" class="flex flex-col gap-[30px] mt-10 pb-10 lg:pb-20 p-5 lg:p-0">
           <div class="flex items-center bg-white p-[8px_16px] gap-[10px] rounded-full w-fit">
             <div class="w-5 h-5 flex shrink-0 overflow-hidden">
               <img src="{{asset('assets/icons/crown.svg')}}" class="object-contain" alt="icon">
@@ -24,14 +24,16 @@
         </div>
 
     </div>
-    <div class="absolute w-[43%] h-full top-0 right-0 overflow-hidden z-0">
+    <div class="lg:absolute md:absolute relative w-full lg:w-[43%] md:w-[43%] h-full top-0 right-0 overflow-hidden z-0">
         <img src="{{Storage::url($heroSection->banner)}}" class="object-cover w-full h-full" alt="banner">
     </div>
     @empty
     <p>Tidak ada data Hero</p>
     @endforelse
   </div>
-  <div id="Stats" class="bg-violet-700 w-[80%] rounded-full mt-20 z-10 relative -mt-12 left-1/2 transform -translate-x-1/2">
+
+
+  {{-- <div id="Stats" class="bg-violet-700 w-[80%] rounded-xl mt-20 z-10 relative -mt-12 left-1/2 transform -translate-x-1/2">
     <div class="container max-w-[1000px] mx-auto py-6">
       <div class="flex flex-wrap items-center justify-between p-[10px]">
 
@@ -51,7 +53,32 @@
         @endforelse
       </div>
     </div>
-  </div>
+  </div> --}}
+
+  <div id="Stats" class="bg-[#F6F7FA] w-[90%] md:w-[80%] rounded-xl mt-20 z-10 relative -mt-12 left-1/2 transform -translate-x-1/2">
+    <div class="container max-w-[1000px] mx-auto py-8 px-4 lg:px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
+            @forelse ($statistics as $statistic)
+            <div class="card flex flex-col items-center gap-3 text-center
+                @media(min-width: 1024px) ? 'lg:bg-transparent lg:shadow-none' : 'bg-white p-5 rounded-lg shadow-md hover:shadow-lg'">
+
+                <!-- Icon -->
+                <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
+                    <img src="{{ Storage::url($statistic->icon) }}" class="object-contain w-full h-full" alt="icon">
+                </div>
+                <!-- Goal  -->
+                <p class="text-light font-bold text-2xl leading-[34px]">{{ $statistic->goal }}</p>
+                <!-- Name -->
+                <p class="text-cp-light-grey text-sm lg:text-base">{{ $statistic->name }}</p>
+            </div>
+            @empty
+            <p class="text-center w-full text-cp-light-grey">Belum ada data terbaru</p>
+            @endforelse
+        </div>
+    </div>
+</div>
+
+
   {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
     <h2 class="font-bold text-lg">Trusted by 500+ Top Leaders Worldwide</h2>
     <div class="logo-container flex flex-wrap gap-5 justify-center">
@@ -141,7 +168,7 @@
       <div class="w-[470px] h-[550px] flex shrink-0 overflow-hidden rounded-xl">
         <img src="{{Storage::url($product->thumbnail)}}" class="w-full h-full object-cover rounded-xl" alt="thumbnail">
       </div>
-      <div class="flex flex-col gap-[30px] py-[50px] h-fit max-w-[500px]">
+      <div class="flex flex-col gap-[30px] py-[50px] h-fit max-w-[500px] p-5 lg:p-0">
         <p class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">{{ $product->tagline }}</p>
         <div class="flex flex-col gap-[10px]">
           <h2 class="font-bold text-4xl leading-[45px]">{{ $product->name }}</h2>
