@@ -1,22 +1,20 @@
 {
     "version": 2,
-    "framework": null,
     "builds": [
         {
             "src": "api/index.php",
-            "use": "@vercel/php",
+            "use": "vercel-php@0.7.2",
             "config": {
-                "installCommand": "curl -sS https://getcomposer.org/installer | php && php composer.phar install --optimize-autoloader --no-dev"
+                "installCommand": "./install.sh && composer install --optimize-autoloader --no-dev"
             }
         }
     ],
-
     "routes": [
         { "src": "/build/(.*)", "dest": "/public/build/" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "public": true,
-    "buildCommand": "composer install --optimize-autoloader --no-dev && vite build",
+    "buildCommand": "./install.sh && composer install --optimize-autoloader --no-dev && vite build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
