@@ -55,7 +55,7 @@
     </div>
   </div> --}}
 
-  <div id="Stats" class="bg-[#F6F7FA] w-[90%] md:w-[80%] rounded-xl mt-20 z-10 relative -mt-12 left-1/2 transform -translate-x-1/2">
+  <div id="Stats" class="bg-[#F6F7FA] w-[90%] md:w-[80%] rounded-xl mt-20 z-5 relative -mt-12 left-1/2 transform -translate-x-1/2">
     <div class="container max-w-[1000px] mx-auto py-8 px-4 lg:px-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
             @forelse ($statistics as $statistic)
@@ -493,7 +493,7 @@
   @section('floating-whatsapp')
   <a
   href="{{ config('app.whatsapp_link') }}"
-  class="fixed bottom-4 right-4 bg-green-500 text-white w-16 h-16 p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center"
+  class="fixed bottom-4 right-4 bg-green-500 text-white w-16 h-16 p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center z-100"
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Chat via WhatsApp"
