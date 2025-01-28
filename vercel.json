@@ -10,7 +10,7 @@
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "public": true,
-    "buildCommand": "./install.sh && composer install --optimize-autoloader --no-dev && vite build",
+    "buildCommand": "composer install --optimize-autoloader --no-dev && vite build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
