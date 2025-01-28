@@ -2,14 +2,23 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+        "api/index.php": { "runtime": "vercel-php@0.7.2" }
     },
+    "builds": [
+        {
+            "src": "api/index.php",
+            "use": "@vercel/php",
+            "config": {
+                "installCommand": "./install.sh && composer install --optimize-autoloader --no-dev"
+            }
+        }
+    ],
     "routes": [
         { "src": "/build/(.*)", "dest": "/public/build/" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "public": true,
-    "buildCommand": "vite build",
+    "buildCommand": "./install.sh && composer install --optimize-autoloader --no-dev && vite build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
